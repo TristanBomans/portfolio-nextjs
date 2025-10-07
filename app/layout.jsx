@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="nl" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <div className="topbar">
           <div className="container topbar-inner">
@@ -17,6 +17,10 @@ export default function RootLayout({ children }) {
               </svg>
               <span>Portfolio</span>
               <span className="badge">Freelance</span>
+            </div>
+            <div style={{marginLeft:'auto', display:'flex', gap:8}}>
+              <a className="link" href="?lang=nl" aria-label="Switch to Dutch">NL</a>
+              <a className="link" href="?lang=en" aria-label="Switch to English">EN</a>
             </div>
           </div>
         </div>
