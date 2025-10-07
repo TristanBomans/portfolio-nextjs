@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Portfolio — Freelance .NET & Next.js",
-  description: "Minimal one‑page portfolio in a dark OpenAI‑like style",
+  description: "The portfolio of Tristan Bomans, a freelance .NET & Next.js developer.",
   icons: { icon: "/icon.svg" }
 };
 
