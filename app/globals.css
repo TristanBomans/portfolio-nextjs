@@ -193,6 +193,12 @@ a {
 .item small {
     color: var(--muted);
 }
+.item > div {
+    display: contents;
+}
+.item p {
+    grid-column: 1 / -1;
+}
 
 .taglist {
     display: flex;
