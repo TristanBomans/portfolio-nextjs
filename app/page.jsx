@@ -25,7 +25,7 @@ export default function Page() {
       kpi3: 'Focus: integraties, webapps',
       aboutTitle: 'Over mij',
       aboutText:
-        'Ik leer graag bij en push technologie in projecten. Recent bouwde ik apps in Angular + .NET 9 en Next.js (Cloudflare Pages + Workers). Onlangs overgestapt naar macOS; tools wissel ik vaak, maar momenteel ben ik gesetteld op Zen & Helium, Zed en Rider.',
+        'IT boeit me enorm omdat je constant kan bijleren. Ik ben gepassioneerd door het inzetten van technologie om effectieve oplossingen te bouwen. Overdag focus ik me voornamelijk op integratieprojecten met Azure Logic Apps en Service Bus, en ontwikkel ik Azure Functions in .NET of andere talen naargelang de vereisten. Momenteel bouw ik ook een .NET-applicatie die gebruikmaakt van een op Azure gedeployeerd taalmodel. Los daarvan omvatten mijn recente projecten applicaties gebouwd met zowel Angular en .NET 9, als Next.js met Cloudflare Pages en Workers.',
       links: 'Links',
       availability: 'Beschikbaarheid',
       availabilityTitle: 'Freelance opdrachten',
@@ -48,7 +48,7 @@ export default function Page() {
       kpi3: 'Focus: integrations, web apps',
       aboutTitle: 'About',
       aboutText:
-        'I love learning and pushing technology in projects. Recently built apps with Angular + .NET 9 and Next.js (Cloudflare Pages + Workers). I recently switched to macOS; I rotate tools often but currently settled on Zen & Helium, Zed and Rider.',
+        'I\'m fascinated by the constant learning that IT requires. I\'m passionate about using technology to build effective solutions. During the day, I focus mainly on integration projects with Azure Logic Apps and Service Bus, and I develop Azure Functions in .NET or other languages based on the requirements. I am also currently building a .NET application that uses an Azure-deployed language model. Separately, my recent projects include applications built with both Angular and .NET 9, as well as Next.js with Cloudflare Pages and Workers.',
       links: 'Links',
       availability: 'Availability',
       availabilityTitle: 'Freelance projects',
