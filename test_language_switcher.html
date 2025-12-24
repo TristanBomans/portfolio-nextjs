@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Language Switcher Test</title>
+    <style>
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: #a1a1aa;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover {
+            color: #ededed;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-link.active {
+            color: #ededed;
+            background: #121212;
+            border: 1px solid #262626;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Language Switcher Test</h1>
+    
+    <div class="nav-links">
+        <a class="nav-link" href="?lang=nl" id="nl-link">NL</a>
+        <a class="nav-link active" href="?lang=en" id="en-link">EN</a>
+    </div>
+    
+    <h2>Test Cases:</h2>
+    <ol>
+        <li>Click NL button - should become active, EN should become inactive</li>
+        <li>Click EN button - should become active, NL should become inactive</li>
+        <li>URL should update with ?lang=nl or ?lang=en</li>
+    </ol>
+    
+    <script>
+        // Simulate the LanguageSwitcher component behavior
+        function updateActiveLanguage() {
+            const params = new URLSearchParams(window.location.search);
+            const currentLang = params.get('lang') || 'en';
+            
+            const nlLink = document.getElementById('nl-link');
+            const enLink = document.getElementById('en-link');
+            
+            nlLink.classList.remove('active');
+            enLink.classList.remove('active');
+            
+            if (currentLang === 'nl') {
+                nlLink.classList.add('active');
+            } else {
+                enLink.classList.add('active');
+            }
+        }
+        
+        // Update on page load
+        updateActiveLanguage();
+        
+        // Add click handlers to simulate navigation
+        document.getElementById('nl-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            history.pushState({}, '', '?lang=nl');
+            updateActiveLanguage();
+        });
+        
+        document.getElementById('en-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            history.pushState({}, '', '?lang=en');
+            updateActiveLanguage();
+        });
+        
+        // Handle back/forward navigation
+        window.addEventListener('popstate', updateActiveLanguage);
+    </script>
+</body>
+</html>

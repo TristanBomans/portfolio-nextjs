@@ -140,7 +140,6 @@ export default function Page() {
                 <span className="tag">.NET 8/9</span>
                 <span className="tag">C#</span>
                 <span className="tag">Azure</span>
-                <span className="tag">Azure Integration Services</span>
                 <span className="tag">SQL</span>
                 <span className="tag">Next.js</span>
                 <span className="tag">React</span>

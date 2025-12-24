@@ -1,3 +1,6 @@
+import "./globals.css";
+import LanguageSwitcher from "./LanguageSwitcher";
+
 export const metadata = {
   title: "Portfolio — Freelance .NET & Next.js",
   description: "The portfolio of Tristan Bomans, a freelance .NET & Next.js developer.",
@@ -22,10 +25,11 @@ export default function RootLayout({ children }) {
             </div>
             <nav className="nav-links">
               <a className="nav-link" href="?lang=nl" aria-label="Switch to Dutch">NL</a>
-              <a className="nav-link active" href="?lang=en" aria-label="Switch to English">EN</a>
+              <a className="nav-link" href="?lang=en" aria-label="Switch to English">EN</a>
             </nav>
           </div>
         </header>
+        <LanguageSwitcher />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -34,5 +38,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-import "./globals.css";
