@@ -215,47 +215,46 @@ export default function ExperienceTimeline() {
               return (
                 <div
                   key={`${exp.company}-${exp.period}`}
-                  className={`relative flex flex-col md:flex-row gap-8 ${
-                    isEven ? 'md:flex-row-reverse' : ''
-                  }`}
+                  className="relative flex flex-col md:flex-row gap-8"
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseLeave={() => setActiveIndex(null)}
                 >
-                  {/* Content card */}
-                  <div className="flex-1 md:text-right pl-8 md:pl-0 md:px-12">
-                    <div
-                      className="experience-card p-6 rounded-2xl border transition-all duration-500"
-                      style={{
-                        borderColor: activeIndex === index ? `${exp.typeColor}50` : '#1a1a1a',
-                        background: activeIndex === index
-                          ? `linear-gradient(135deg, ${exp.typeColor}08, transparent)`
-                          : 'rgba(10,10,10,0.5)',
-                        transform: activeIndex === index ? 'translateZ(20px)' : 'translateZ(0)',
-                      }}
-                    >
-                      {/* Type badge */}
-                      <div className={`flex items-center gap-3 mb-3 ${isEven ? 'md:justify-end' : ''}`}>
-                        <span
-                          className="text-xs font-mono px-2 py-1 rounded-full"
-                          style={{
-                            background: `${exp.typeColor}20`,
-                            color: exp.typeColor,
-                          }}
-                        >
-                          {exp.type}
-                        </span>
-                        <span className="text-xs font-mono text-[#666]">{exp.period}</span>
-                      </div>
+                  {/* Left side - content for even items, empty for odd */}
+                  <div className={`flex-1 md:px-12 ${isEven ? 'md:text-right' : 'hidden md:block'}`}>
+                    {isEven && (
+                      <div
+                        className="experience-card p-6 rounded-2xl border transition-all duration-500"
+                        style={{
+                          borderColor: activeIndex === index ? `${exp.typeColor}50` : '#1a1a1a',
+                          background: activeIndex === index
+                            ? `linear-gradient(135deg, ${exp.typeColor}08, transparent)`
+                            : 'rgba(10,10,10,0.5)',
+                        }}
+                      >
+                        {/* Type badge */}
+                        <div className="flex items-center gap-3 mb-3 md:justify-end">
+                          <span
+                            className="text-xs font-mono px-2 py-1 rounded-full"
+                            style={{
+                              background: `${exp.typeColor}20`,
+                              color: exp.typeColor,
+                            }}
+                          >
+                            {exp.type}
+                          </span>
+                          <span className="text-xs font-mono text-[#666]">{exp.period}</span>
+                        </div>
 
-                      <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
-                      <p className="text-[#00f0ff] font-medium mb-2">{exp.role}</p>
-                      <p className="text-sm text-[#666] mb-2">{exp.location}</p>
-                      <p className="text-sm text-[#888]">{exp.description}</p>
-                    </div>
+                        <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
+                        <p className="text-[#00f0ff] font-medium mb-2">{exp.role}</p>
+                        <p className="text-sm text-[#666] mb-2">{exp.location}</p>
+                        <p className="text-sm text-[#888]">{exp.description}</p>
+                      </div>
+                    )}
                   </div>
 
                   {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 top-8 md:top-6 -translate-x-1/2">
+                  <div className="absolute left-0 md:left-1/2 top-6 md:top-6 -translate-x-1/2">
                     <div
                       className="timeline-dot w-4 h-4 rounded-full border-2 border-[#050505] transition-all duration-300"
                       style={{
@@ -268,8 +267,39 @@ export default function ExperienceTimeline() {
                     />
                   </div>
 
-                  {/* Empty space for alternating layout */}
-                  <div className="flex-1 hidden md:block" />
+                  {/* Right side - empty for even, content for odd */}
+                  <div className={`flex-1 pl-8 md:pl-0 md:px-12 ${!isEven ? '' : 'hidden md:block'}`}>
+                    {!isEven && (
+                      <div
+                        className="experience-card p-6 rounded-2xl border transition-all duration-500"
+                        style={{
+                          borderColor: activeIndex === index ? `${exp.typeColor}50` : '#1a1a1a',
+                          background: activeIndex === index
+                            ? `linear-gradient(135deg, ${exp.typeColor}08, transparent)`
+                            : 'rgba(10,10,10,0.5)',
+                        }}
+                      >
+                        {/* Type badge */}
+                        <div className="flex items-center gap-3 mb-3">
+                          <span
+                            className="text-xs font-mono px-2 py-1 rounded-full"
+                            style={{
+                              background: `${exp.typeColor}20`,
+                              color: exp.typeColor,
+                            }}
+                          >
+                            {exp.type}
+                          </span>
+                          <span className="text-xs font-mono text-[#666]">{exp.period}</span>
+                        </div>
+
+                        <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
+                        <p className="text-[#00f0ff] font-medium mb-2">{exp.role}</p>
+                        <p className="text-sm text-[#666] mb-2">{exp.location}</p>
+                        <p className="text-sm text-[#888]">{exp.description}</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )
             })}

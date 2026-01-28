@@ -93,42 +93,47 @@ export default function TechTunnel() {
       {/* Background grid */}
       <div className="absolute inset-0 grid-bg opacity-30" />
 
-      {/* Section header */}
-      <div className="absolute top-8 left-8 z-20">
-        <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em]">
-          {t('tech.title')}
-        </span>
-        <div className="h-px w-24 bg-gradient-to-r from-[#00f0ff] to-transparent mt-4" />
-      </div>
+      {/* Fixed header container with background */}
+      <div className="absolute top-0 left-0 right-0 z-30 p-8 bg-gradient-to-b from-[#050505] via-[#050505]/90 to-transparent pb-20">
+        <div className="flex items-start justify-between">
+          {/* Section header */}
+          <div>
+            <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em]">
+              {t('tech.title')}
+            </span>
+            <div className="h-px w-24 bg-gradient-to-r from-[#00f0ff] to-transparent mt-4" />
+          </div>
 
-      {/* Progress indicator */}
-      <div className="absolute top-8 right-8 z-20 flex items-center gap-4">
-        <span className="text-sm font-mono text-[#666]">
-          {String(activeIndex + 1).padStart(2, '0')} / {String(technologies.length).padStart(2, '0')}
-        </span>
-        <div className="w-32 h-1 bg-[#1a1a1a] rounded-full overflow-hidden">
-          <div
-            className="h-full bg-[#00f0ff] transition-all duration-300"
-            style={{ width: `${((activeIndex + 1) / technologies.length) * 100}%` }}
-          />
+          {/* Progress indicator */}
+          <div className="flex items-center gap-4">
+            <span className="text-sm font-mono text-[#666]">
+              {String(activeIndex + 1).padStart(2, '0')} / {String(technologies.length).padStart(2, '0')}
+            </span>
+            <div className="w-32 h-1 bg-[#1a1a1a] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#00f0ff] transition-all duration-300"
+                style={{ width: `${((activeIndex + 1) / technologies.length) * 100}%` }}
+              />
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Main title */}
-      <div className="absolute top-1/4 left-8 z-20 max-w-md">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4">
-          {t('tech.subtitle').split(' ').slice(0, -2).join(' ')}{' '}
-          <span className="gradient-text">
-            {t('tech.subtitle').split(' ').slice(-2).join(' ')}
-          </span>
-        </h2>
-        <p className="text-[#666]">{t('tech.description')}</p>
+        {/* Main title */}
+        <div className="mt-12 max-w-md">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            {t('tech.subtitle').split(' ').slice(0, -2).join(' ')}{' '}
+            <span className="gradient-text">
+              {t('tech.subtitle').split(' ').slice(-2).join(' ')}
+            </span>
+          </h2>
+          <p className="text-[#666]">{t('tech.description')}</p>
+        </div>
       </div>
 
       {/* Horizontal scrolling container */}
       <div
         ref={containerRef}
-        className="absolute top-1/2 left-0 flex items-center gap-8 pl-8"
+        className="absolute top-[45%] left-0 flex items-center gap-8 pl-8 z-10"
         style={{
           transform: 'translateY(-50%)',
           paddingLeft: '50vw',
