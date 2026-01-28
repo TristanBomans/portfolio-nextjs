@@ -94,7 +94,7 @@ export default function TechTunnel() {
       <div className="absolute inset-0 grid-bg opacity-30" />
 
       {/* Fixed header container with background */}
-      <div className="absolute top-0 left-0 right-0 z-[60] pt-24 px-8 pb-20 bg-gradient-to-b from-[#050505] via-[#050505] to-transparent">
+      <div className="absolute top-0 left-0 right-0 z-[60] pt-24 px-8 pb-12 bg-gradient-to-b from-[#050505] via-[#050505]/95 to-transparent">
         <div className="flex items-start justify-between">
           {/* Section header */}
           <div>
@@ -133,7 +133,7 @@ export default function TechTunnel() {
       {/* Horizontal scrolling container */}
       <div
         ref={containerRef}
-        className="absolute top-[45%] left-0 flex items-center gap-8 pl-8 z-10"
+        className="absolute top-[65%] left-0 flex items-center gap-8 pl-8 z-10"
         style={{
           transform: 'translateY(-50%)',
           paddingLeft: '50vw',
