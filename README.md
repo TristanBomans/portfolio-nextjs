@@ -5,6 +5,7 @@ A premium, interactive portfolio website built with Next.js, React, TypeScript, 
 ## Features
 
 - **Smooth Page Scrolling** - Seamless navigation between sections
+- **Bilingual Support** - English/Dutch language toggle
 - **Parallax Effects** - Multi-layered depth on scroll
 - **Cursor Glow** - Interactive cursor following effect (desktop only)
 - **Animated Timeline** - Interactive career journey visualization
@@ -15,12 +16,11 @@ A premium, interactive portfolio website built with Next.js, React, TypeScript, 
 
 ## Tech Stack
 
-- Next.js 14
+- Next.js 16
 - React 18
 - TypeScript
 - Tailwind CSS
 - Framer Motion
-- GSAP
 - Lucide React Icons
 
 ## Getting Started
@@ -45,7 +45,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 npm run build
 ```
 
-The static files will be generated in the `dist` folder.
+The static files will be generated in the `out` folder.
 
 ## Project Structure
 
@@ -71,6 +71,9 @@ components/
 hooks/               # Custom React hooks
 ├── useScrollProgress.ts
 └── useMousePosition.ts
+
+lib/                 # Utilities
+└── i18n.tsx         # Internationalization (EN/NL)
 ```
 
 ## Customization
