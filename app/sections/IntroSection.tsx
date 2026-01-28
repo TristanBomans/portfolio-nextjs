@@ -223,25 +223,24 @@ export default function IntroSection() {
                 className="intro-card group flex items-center justify-between p-6 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/50 backdrop-blur-sm hover:border-[#00f0ff]/50 transition-all duration-500"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
                   <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
                     style={{ background: `${link.color}15` }}
                   >
-                    <link.icon size={20} style={{ color: link.color }} />
+                    <link.icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: link.color }} />
                   </div>
-                  <div>
-                    <p className="font-medium text-white group-hover:text-[#00f0ff] transition-colors">
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium text-white group-hover:text-[#00f0ff] transition-colors text-sm md:text-base">
                       {link.name}
                     </p>
-                    <p className="text-xs font-mono text-[#666]">
+                    <p className="text-[10px] md:text-xs font-mono text-[#666] truncate">
                       {link.href.replace('mailto:', '')}
                     </p>
                   </div>
                 </div>
                 <ExternalLink
-                  size={18}
-                  className="text-[#666] group-hover:text-[#00f0ff] transition-colors"
+                  className="w-4 h-4 md:w-5 md:h-5 text-[#666] group-hover:text-[#00f0ff] transition-colors flex-shrink-0"
                 />
               </a>
             ))}
