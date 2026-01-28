@@ -223,33 +223,33 @@ export default function HeroSection() {
           <span className="gradient-text font-medium"> — {t('hero.description')}</span>
         </p>
 
-        <p className="text-[#666] font-mono text-sm mb-12">{t('hero.location')}</p>
+        <p className="text-[#666] font-mono text-sm mb-6 md:mb-12">{t('hero.location')}</p>
 
         {/* Stats */}
-        <div ref={statsRef} className="flex flex-wrap justify-center gap-6 md:gap-12">
+        <div ref={statsRef} className="flex flex-wrap justify-center gap-3 md:gap-12">
           {stats.map((stat, i) => (
             <div
               key={i}
-              className="tech-card px-6 py-4 rounded-2xl min-w-[140px]"
+              className="tech-card px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl min-w-[100px] md:min-w-[140px]"
             >
-              <p className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-xs font-mono text-[#666] uppercase tracking-wider">{stat.label}</p>
+              <p className="text-xl md:text-3xl font-bold text-white mb-1">{stat.value}</p>
+              <p className="text-[10px] md:text-xs font-mono text-[#666] uppercase tracking-wider">{stat.label}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-xs font-mono text-[#666] uppercase tracking-widest">{t('hero.scroll')}</span>
-        <ArrowDown className="text-[#00f0ff] animate-bounce" size={20} />
+      <div className="absolute bottom-20 md:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-[10px] md:text-xs font-mono text-[#666] uppercase tracking-widest">{t('hero.scroll')}</span>
+        <ArrowDown className="text-[#00f0ff] animate-bounce w-4 h-4 md:w-5 md:h-5" />
       </div>
 
-      {/* Corner decorations */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-[#1a1a1a]" />
-      <div className="absolute top-8 right-8 w-16 h-16 border-r border-t border-[#1a1a1a]" />
-      <div className="absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#1a1a1a]" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#1a1a1a]" />
+      {/* Corner decorations - Hidden on mobile, visible on desktop */}
+      <div className="hidden md:block absolute top-8 left-8 w-16 h-16 border-l border-t border-[#1a1a1a]" />
+      <div className="hidden md:block absolute top-8 right-8 w-16 h-16 border-r border-t border-[#1a1a1a]" />
+      <div className="hidden md:block absolute bottom-8 left-8 w-16 h-16 border-l border-b border-[#1a1a1a]" />
+      <div className="hidden md:block absolute bottom-8 right-8 w-16 h-16 border-r border-b border-[#1a1a1a]" />
 
       <style jsx>{`
         @keyframes spin {

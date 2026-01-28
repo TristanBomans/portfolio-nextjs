@@ -177,9 +177,9 @@ export default function WorkGallery() {
                 <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6">
                   {/* Left content */}
                   <div className="flex-1">
-                    <div className="flex items-center gap-4 mb-4">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-4 mb-4">
                       <span
-                        className="text-xs font-mono px-3 py-1 rounded-full"
+                        className="text-[10px] md:text-xs font-mono px-2 md:px-3 py-1 rounded-full whitespace-nowrap"
                         style={{
                           background: `${project.color}20`,
                           color: project.color,
@@ -187,16 +187,14 @@ export default function WorkGallery() {
                       >
                         {project.year}
                       </span>
-                      <div className="flex gap-2">
-                        {project.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className="text-xs font-mono text-[#666] px-2 py-1 rounded bg-white/5"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[10px] md:text-xs font-mono text-[#666] px-2 py-1 rounded bg-white/5 whitespace-nowrap"
+                        >
+                          {tech}
+                        </span>
+                      ))}
                     </div>
 
                     <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 group-hover:text-[#00f0ff] transition-colors">

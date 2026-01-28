@@ -138,7 +138,7 @@ export default function IntroSection() {
     <section
       id="intro"
       ref={sectionRef}
-      className="relative min-h-screen py-32 overflow-hidden"
+      className="relative min-h-screen py-32 overflow-x-hidden"
     >
       {/* Background shapes */}
       <div ref={shapesRef} className="absolute inset-0 pointer-events-none">
@@ -148,7 +148,7 @@ export default function IntroSection() {
         <div className="shape absolute bottom-20 right-[25%] w-40 h-40 border border-[#00f0ff]/10 rotate-45" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
         {/* Section label */}
         <div className="mb-16">
           <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em]">
@@ -182,9 +182,9 @@ export default function IntroSection() {
         </div>
 
         {/* Content grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start w-full max-w-full">
           {/* Left: Description */}
-          <div ref={textRef} className="space-y-8">
+          <div ref={textRef} className="space-y-8 w-full max-w-full min-w-0">
             <p className="reveal-text text-base md:text-lg text-[#888] leading-relaxed break-words">
               {t('about.description1')}
             </p>
@@ -209,7 +209,7 @@ export default function IntroSection() {
           </div>
 
           {/* Right: Connect cards */}
-          <div ref={cardsRef} className="space-y-4" style={{ perspective: '1000px' }}>
+          <div ref={cardsRef} className="space-y-4 w-full max-w-full min-w-0" style={{ perspective: '1000px' }}>
             <h3 className="text-sm font-mono text-[#666] uppercase tracking-widest mb-6">
               {t('about.connect')}
             </h3>
@@ -220,10 +220,10 @@ export default function IntroSection() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="intro-card group flex items-center justify-between p-4 md:p-6 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/50 backdrop-blur-sm hover:border-[#00f0ff]/50 transition-all duration-500 overflow-hidden"
+                className="intro-card group flex items-center justify-between p-3 sm:p-4 md:p-6 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/50 backdrop-blur-sm hover:border-[#00f0ff]/50 transition-all duration-500 overflow-hidden w-full max-w-full"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1 overflow-hidden">
+                <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0 flex-1 overflow-hidden">
                   <div
                     className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
                     style={{ background: `${link.color}15` }}
@@ -246,7 +246,7 @@ export default function IntroSection() {
             ))}
 
             {/* Availability card */}
-            <div className="intro-card p-6 rounded-2xl border border-[#00f0ff]/30 bg-[#00f0ff]/5 mt-8">
+            <div className="intro-card p-4 sm:p-6 rounded-2xl border border-[#00f0ff]/30 bg-[#00f0ff]/5 mt-8 w-full max-w-full">
               <div className="flex items-center gap-3 mb-3">
                 <span className="relative flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f0ff] opacity-75" />
