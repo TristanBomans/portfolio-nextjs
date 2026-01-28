@@ -220,27 +220,27 @@ export default function IntroSection() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="intro-card group flex items-center justify-between p-6 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/50 backdrop-blur-sm hover:border-[#00f0ff]/50 transition-all duration-500"
+                className="intro-card group flex items-center justify-between p-4 md:p-6 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/50 backdrop-blur-sm hover:border-[#00f0ff]/50 transition-all duration-500 overflow-hidden"
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1">
+                <div className="flex items-center gap-3 md:gap-4 min-w-0 flex-1 overflow-hidden">
                   <div
                     className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 flex-shrink-0"
                     style={{ background: `${link.color}15` }}
                   >
                     <link.icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: link.color }} />
                   </div>
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0 flex-1 overflow-hidden">
                     <p className="font-medium text-white group-hover:text-[#00f0ff] transition-colors text-sm md:text-base">
                       {link.name}
                     </p>
-                    <p className="text-[10px] md:text-xs font-mono text-[#666] truncate">
+                    <p className="text-[10px] md:text-xs font-mono text-[#666] truncate block max-w-full">
                       {link.href.replace('mailto:', '')}
                     </p>
                   </div>
                 </div>
                 <ExternalLink
-                  className="w-4 h-4 md:w-5 md:h-5 text-[#666] group-hover:text-[#00f0ff] transition-colors flex-shrink-0"
+                  className="w-4 h-4 md:w-5 md:h-5 text-[#666] group-hover:text-[#00f0ff] transition-colors flex-shrink-0 ml-2"
                 />
               </a>
             ))}
