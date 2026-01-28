@@ -94,7 +94,7 @@ export default function TechTunnel() {
       <div className="absolute inset-0 grid-bg opacity-30" />
 
       {/* Fixed header container with background */}
-      <div className="absolute top-0 left-0 right-0 z-30 p-8 bg-gradient-to-b from-[#050505] via-[#050505]/90 to-transparent pb-20">
+      <div className="absolute top-0 left-0 right-0 z-[60] pt-24 px-8 pb-20 bg-gradient-to-b from-[#050505] via-[#050505] to-transparent">
         <div className="flex items-start justify-between">
           {/* Section header */}
           <div>
