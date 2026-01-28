@@ -113,7 +113,7 @@ export default function Work() {
                           {project.tech.map((t) => (
                             <span
                               key={t}
-                              className="text-xs text-muted-foreground px-2 py-1 rounded-md bg-white/5"
+                              className="text-xs text-muted-foreground px-2 py-1 rounded-md bg-white/5 whitespace-nowrap"
                             >
                               {t}
                             </span>
