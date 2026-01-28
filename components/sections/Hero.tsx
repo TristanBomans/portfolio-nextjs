@@ -67,7 +67,7 @@ export default function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0 noise-overlay">
         <motion.div
@@ -208,7 +208,7 @@ export default function Hero() {
           <span>{t('hero.location')}</span>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-6 md:gap-12">
+        <div className="flex flex-wrap justify-center gap-4 md:gap-12">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -216,10 +216,10 @@ export default function Hero() {
               variants={badgeVariants}
               initial="hidden"
               animate="visible"
-              className="text-center px-6 py-4 rounded-2xl glass-light"
+              className="text-center px-4 py-3 md:px-6 md:py-4 rounded-2xl glass-light"
             >
-              <p className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</p>
-              <p className="text-sm text-muted">{stat.label}</p>
+              <p className="text-xl md:text-3xl font-bold text-white mb-1">{stat.value}</p>
+              <p className="text-xs md:text-sm text-muted">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -229,7 +229,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <motion.a
           href="#about"

@@ -101,7 +101,7 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        <div className="relative">
+        <div className="relative pl-8 md:pl-0">
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2">
             <motion.div
               style={{ height: lineHeight }}
@@ -156,7 +156,7 @@ export default function Experience() {
                   </div>
                 </div>
 
-                <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-4 h-4">
+                <div className="absolute -left-8 md:left-1/2 top-8 md:top-0 -translate-x-1/2 w-4 h-4">
                   <motion.div
                     animate={{
                       scale: hoveredIndex === index ? 1.5 : 1,
