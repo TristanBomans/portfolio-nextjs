@@ -185,11 +185,11 @@ export default function IntroSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left: Description */}
           <div ref={textRef} className="space-y-8">
-            <p className="reveal-text text-lg md:text-xl text-[#888] leading-relaxed">
+            <p className="reveal-text text-base md:text-lg text-[#888] leading-relaxed break-words">
               {t('about.description1')}
             </p>
 
-            <p className="reveal-text text-lg text-[#666] leading-relaxed">
+            <p className="reveal-text text-base md:text-lg text-[#666] leading-relaxed break-words">
               {t('about.description2')}
             </p>
 

@@ -201,26 +201,26 @@ export default function ExperienceTimeline() {
 
         {/* Timeline */}
         <div ref={timelineRef} className="relative">
-          {/* Center line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-1/2">
+          {/* Center line - left on mobile, center on desktop */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px md:-translate-x-1/2">
             <div className="timeline-line absolute inset-0 bg-[#1a1a1a] origin-top" />
             <div className="absolute inset-0 bg-gradient-to-b from-[#00f0ff] via-[#ff006e] to-[#ffd700] opacity-50" />
           </div>
 
           {/* Experience items */}
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experiences.map((exp, index) => {
               const isEven = index % 2 === 0
 
               return (
                 <div
                   key={`${exp.company}-${exp.period}`}
-                  className="relative flex flex-col md:flex-row gap-8"
+                  className="relative flex flex-col md:flex-row gap-4 md:gap-8"
                   onMouseEnter={() => setActiveIndex(index)}
                   onMouseLeave={() => setActiveIndex(null)}
                 >
-                  {/* Left side - content for even items, empty for odd */}
-                  <div className={`flex-1 md:px-12 ${isEven ? 'md:text-right' : 'hidden md:block'}`}>
+                  {/* Desktop Left side - content for even items, empty for odd */}
+                  <div className={`hidden md:block flex-1 md:px-12 ${isEven ? 'md:text-right' : ''}`}>
                     {isEven && (
                       <div
                         className="experience-card p-6 rounded-2xl border transition-all duration-500"
@@ -245,18 +245,18 @@ export default function ExperienceTimeline() {
                           <span className="text-xs font-mono text-[#666]">{exp.period}</span>
                         </div>
 
-                        <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
-                        <p className="text-[#00f0ff] font-medium mb-2">{exp.role}</p>
-                        <p className="text-sm text-[#666] mb-2">{exp.location}</p>
-                        <p className="text-sm text-[#888]">{exp.description}</p>
+                        <h3 className="text-lg md:text-xl font-bold text-white mb-1">{exp.company}</h3>
+                        <p className="text-[#00f0ff] font-medium mb-2 text-sm md:text-base">{exp.role}</p>
+                        <p className="text-xs md:text-sm text-[#666] mb-2">{exp.location}</p>
+                        <p className="text-xs md:text-sm text-[#888]">{exp.description}</p>
                       </div>
                     )}
                   </div>
 
                   {/* Timeline dot */}
-                  <div className="absolute left-0 md:left-1/2 top-6 md:top-6 -translate-x-1/2">
+                  <div className="absolute left-4 md:left-1/2 top-3 md:top-6 -translate-x-1/2 z-10">
                     <div
-                      className="timeline-dot w-4 h-4 rounded-full border-2 border-[#050505] transition-all duration-300"
+                      className="timeline-dot w-3 h-3 md:w-4 md:h-4 rounded-full border-2 border-[#050505] transition-all duration-300"
                       style={{
                         background: exp.typeColor,
                         boxShadow: activeIndex === index
@@ -267,8 +267,8 @@ export default function ExperienceTimeline() {
                     />
                   </div>
 
-                  {/* Right side - empty for even, content for odd */}
-                  <div className={`flex-1 pl-8 md:pl-0 md:px-12 ${!isEven ? '' : 'hidden md:block'}`}>
+                  {/* Desktop Right side - empty for even, content for odd */}
+                  <div className={`hidden md:block flex-1 md:px-12 ${!isEven ? '' : ''}`}>
                     {!isEven && (
                       <div
                         className="experience-card p-6 rounded-2xl border transition-all duration-500"
@@ -293,12 +293,44 @@ export default function ExperienceTimeline() {
                           <span className="text-xs font-mono text-[#666]">{exp.period}</span>
                         </div>
 
-                        <h3 className="text-xl font-bold text-white mb-1">{exp.company}</h3>
-                        <p className="text-[#00f0ff] font-medium mb-2">{exp.role}</p>
-                        <p className="text-sm text-[#666] mb-2">{exp.location}</p>
-                        <p className="text-sm text-[#888]">{exp.description}</p>
+                        <h3 className="text-lg md:text-xl font-bold text-white mb-1">{exp.company}</h3>
+                        <p className="text-[#00f0ff] font-medium mb-2 text-sm md:text-base">{exp.role}</p>
+                        <p className="text-xs md:text-sm text-[#666] mb-2">{exp.location}</p>
+                        <p className="text-xs md:text-sm text-[#888]">{exp.description}</p>
                       </div>
                     )}
+                  </div>
+
+                  {/* Mobile - All content on right side */}
+                  <div className="md:hidden flex-1 pl-10">
+                    <div
+                      className="experience-card p-4 rounded-xl border transition-all duration-500"
+                      style={{
+                        borderColor: activeIndex === index ? `${exp.typeColor}50` : '#1a1a1a',
+                        background: activeIndex === index
+                          ? `linear-gradient(135deg, ${exp.typeColor}08, transparent)`
+                          : 'rgba(10,10,10,0.5)',
+                      }}
+                    >
+                      {/* Type badge */}
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <span
+                          className="text-[10px] font-mono px-2 py-1 rounded-full"
+                          style={{
+                            background: `${exp.typeColor}20`,
+                            color: exp.typeColor,
+                          }}
+                        >
+                          {exp.type}
+                        </span>
+                        <span className="text-[10px] font-mono text-[#666]">{exp.period}</span>
+                      </div>
+
+                      <h3 className="text-base font-bold text-white mb-1">{exp.company}</h3>
+                      <p className="text-[#00f0ff] font-medium mb-1 text-sm">{exp.role}</p>
+                      <p className="text-xs text-[#666] mb-1">{exp.location}</p>
+                      <p className="text-xs text-[#888]">{exp.description}</p>
+                    </div>
                   </div>
                 </div>
               )

@@ -160,64 +160,63 @@ export default function ContactPortal() {
         </span>
 
         {/* Main heading */}
-        <h2 className="reveal-text text-5xl md:text-7xl lg:text-8xl font-bold mb-6">
+        <h2 className="reveal-text text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6">
           {t('contact.subtitle')}{' '}
           <span className="gradient-text">{t('contact.subtitleHighlight')}</span>
         </h2>
 
         {/* Description */}
-        <p className="reveal-text text-lg md:text-xl text-[#888] max-w-2xl mx-auto mb-12">
+        <p className="reveal-text text-base md:text-lg lg:text-xl text-[#888] max-w-2xl mx-auto mb-8 md:mb-12 px-4">
           {t('contact.description')}
         </p>
 
         {/* CTA Button */}
-        <div className="reveal-text mb-16">
+        <div className="reveal-text mb-12 md:mb-16">
           <a
             href="mailto:bomanstristan@gmail.com"
-            className="group inline-flex items-center gap-4 px-10 py-5 bg-[#00f0ff] text-[#050505] rounded-full font-mono font-bold text-lg hover:bg-white transition-all duration-300 hover:scale-105"
+            className="group inline-flex items-center gap-2 md:gap-4 px-6 md:px-10 py-3 md:py-5 bg-[#00f0ff] text-[#050505] rounded-full font-mono font-bold text-sm md:text-lg hover:bg-white transition-all duration-300 hover:scale-105"
             style={{
               boxShadow: '0 0 60px rgba(0, 240, 255, 0.4)',
             }}
           >
-            <Mail size={24} />
+            <Mail className="w-5 h-5 md:w-6 md:h-6" />
             <span>{t('contact.emailCta')}</span>
             <ArrowUpRight
-              size={24}
-              className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+              className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
             />
           </a>
         </div>
 
         {/* Social links */}
-        <div className="flex justify-center gap-6 mb-20">
+        <div className="flex justify-center gap-4 md:gap-6 mb-12 md:mb-20">
           {socialLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon w-14 h-14 rounded-full border border-[#1a1a1a] bg-[#0a0a0a]/50 flex items-center justify-center transition-all duration-300 hover:border-[#00f0ff] hover:bg-[#00f0ff]/10"
+              className="social-icon w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#1a1a1a] bg-[#0a0a0a]/50 flex items-center justify-center transition-all duration-300 hover:border-[#00f0ff] hover:bg-[#00f0ff]/10"
               style={{
                 boxShadow: `0 0 20px ${link.color}10`,
               }}
             >
-              <link.icon size={22} style={{ color: link.color }} />
+              <link.icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: link.color }} />
             </a>
           ))}
         </div>
 
         {/* Footer */}
-        <footer className="reveal-text pt-12 border-t border-[#1a1a1a]">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-[#666] flex items-center gap-1">
+        <footer className="reveal-text pt-8 md:pt-12 border-t border-[#1a1a1a]">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
+            <p className="text-xs md:text-sm text-[#666] flex items-center gap-1 text-center md:text-left">
               © 2026 Tristan — {t('contact.footer')}
-              <Heart size={14} className="text-[#ff006e] fill-[#ff006e]" />
+              <Heart className="w-3 h-3 md:w-4 md:h-4 text-[#ff006e] fill-[#ff006e]" />
               {t('contact.footerLocation')}
             </p>
 
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="text-sm text-[#666] hover:text-[#00f0ff] transition-colors font-mono"
+              className="text-xs md:text-sm text-[#666] hover:text-[#00f0ff] transition-colors font-mono"
             >
               {t('contact.backToTop')} ↑
             </button>

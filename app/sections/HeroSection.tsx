@@ -186,12 +186,12 @@ export default function HeroSection() {
       {/* Main content */}
       <div className="relative z-10 text-center px-6" style={{ transformStyle: 'preserve-3d' }}>
         {/* Availability badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/5 mb-8">
-          <span className="relative flex h-2 w-2">
+        <div className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full border border-[#00f0ff]/30 bg-[#00f0ff]/5 mb-6 md:mb-8 max-w-[90vw]">
+          <span className="relative flex h-2 w-2 flex-shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f0ff] opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00f0ff]" />
           </span>
-          <span className="text-sm font-mono text-[#00f0ff]">{t('hero.availability')}</span>
+          <span className="text-xs md:text-sm font-mono text-[#00f0ff] truncate">{t('hero.availability')}</span>
         </div>
 
         {/* Main title with 3D effect */}

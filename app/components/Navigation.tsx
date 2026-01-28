@@ -46,7 +46,7 @@ export default function Navigation() {
         }`}
       >
         <div
-          className={`mx-4 md:mx-8 px-6 md:px-8 py-4 rounded-full transition-all duration-500 ${
+          className={`mx-2 md:mx-8 px-4 md:px-8 py-3 md:py-4 rounded-full transition-all duration-500 ${
             isScrolled
               ? 'bg-[#0a0a0a]/80 backdrop-blur-xl border border-[#1a1a1a]'
               : 'bg-transparent'

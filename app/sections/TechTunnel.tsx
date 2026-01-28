@@ -31,54 +31,56 @@ export default function TechTunnel() {
     if (!section || !container) return
 
     const ctx = gsap.context(() => {
-      // Calculate the total scroll distance
-      const cards = container.querySelectorAll('.tech-card-tunnel')
-      const totalWidth = (cards.length - 1) * 400 // 400px per card including gap
+      // Check if mobile
+      const isMobile = window.innerWidth < 768
 
-      // Horizontal scroll animation
-      const scrollTween = gsap.to(container, {
-        x: () => -(totalWidth - window.innerWidth + 200),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => `+=${totalWidth}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            const progress = self.progress
-            const newIndex = Math.floor(progress * cards.length)
-            setActiveIndex(Math.min(newIndex, cards.length - 1))
-          },
-        },
-      })
+      if (!isMobile) {
+        // Desktop: horizontal scroll
+        const cards = container.querySelectorAll('.tech-card-tunnel')
+        const totalWidth = (cards.length - 1) * 400
 
-      // Individual card animations
-      cards.forEach((card, i) => {
-        // Entrance animation
-        gsap.fromTo(
-          card,
-          {
-            opacity: 0,
-            scale: 0.8,
-            rotateY: 45,
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            rotateY: 0,
-            duration: 0.5,
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: scrollTween,
-              start: 'left 80%',
-              end: 'left 20%',
-              toggleActions: 'play none none reverse',
+        const scrollTween = gsap.to(container, {
+          x: () => -(totalWidth - window.innerWidth + 200),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: () => `+=${totalWidth}`,
+            pin: true,
+            scrub: 1,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              const progress = self.progress
+              const newIndex = Math.floor(progress * cards.length)
+              setActiveIndex(Math.min(newIndex, cards.length - 1))
             },
-          }
-        )
-      })
+          },
+        })
+
+        cards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            {
+              opacity: 0,
+              scale: 0.8,
+              rotateY: 45,
+            },
+            {
+              opacity: 1,
+              scale: 1,
+              rotateY: 0,
+              duration: 0.5,
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: scrollTween,
+                start: 'left 80%',
+                end: 'left 20%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          )
+        })
+      }
     }, section)
 
     return () => ctx.revert()
@@ -88,14 +90,14 @@ export default function TechTunnel() {
     <section
       id="tech"
       ref={sectionRef}
-      className="relative min-h-screen overflow-hidden bg-[#050505]"
+      className="relative min-h-screen md:min-h-screen overflow-hidden bg-[#050505] py-24 md:py-0"
     >
       {/* Background grid */}
       <div className="absolute inset-0 grid-bg opacity-30" />
 
-      {/* Fixed header container with background */}
-      <div className="absolute top-0 left-0 right-0 z-[60] pt-24 px-8 pb-12 bg-gradient-to-b from-[#050505] via-[#050505]/95 to-transparent">
-        <div className="flex items-start justify-between">
+      {/* Header */}
+      <div className="px-6 md:px-8 mb-12 md:mb-0 md:absolute md:top-0 md:left-0 md:right-0 md:z-[60] md:pt-24 md:pb-12 md:bg-gradient-to-b md:from-[#050505] md:via-[#050505]/95 md:to-transparent">
+        <div className="flex items-start justify-between max-w-7xl mx-auto">
           {/* Section header */}
           <div>
             <span className="text-xs font-mono text-[#00f0ff] uppercase tracking-[0.3em]">
@@ -104,8 +106,8 @@ export default function TechTunnel() {
             <div className="h-px w-24 bg-gradient-to-r from-[#00f0ff] to-transparent mt-4" />
           </div>
 
-          {/* Progress indicator */}
-          <div className="flex items-center gap-4">
+          {/* Progress indicator - hidden on mobile (shown inline with cards instead) */}
+          <div className="hidden md:flex items-center gap-4">
             <span className="text-sm font-mono text-[#666]">
               {String(activeIndex + 1).padStart(2, '0')} / {String(technologies.length).padStart(2, '0')}
             </span>
@@ -119,21 +121,77 @@ export default function TechTunnel() {
         </div>
 
         {/* Main title */}
-        <div className="mt-12 max-w-md">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+        <div className="mt-8 md:mt-12 max-w-md">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             {t('tech.subtitle').split(' ').slice(0, -2).join(' ')}{' '}
             <span className="gradient-text">
               {t('tech.subtitle').split(' ').slice(-2).join(' ')}
             </span>
           </h2>
-          <p className="text-[#666]">{t('tech.description')}</p>
+          <p className="text-[#666] text-sm md:text-base">{t('tech.description')}</p>
         </div>
       </div>
 
-      {/* Horizontal scrolling container */}
+      {/* Mobile: Vertical Grid Layout */}
+      <div className="md:hidden px-6">
+        <div className="grid grid-cols-2 gap-4">
+          {technologies.map((tech, index) => (
+            <div
+              key={tech.name}
+              className="relative flex flex-col items-center p-4 rounded-2xl border border-[#1a1a1a] bg-[#0a0a0a]/80 overflow-hidden group"
+            >
+              {/* Card background glow */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                style={{
+                  background: `radial-gradient(circle at 50% 50%, ${tech.color}15, transparent 70%)`,
+                }}
+              />
+
+              {/* Category */}
+              <span
+                className="text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded-full mb-3"
+                style={{
+                  background: `${tech.color}20`,
+                  color: tech.color,
+                }}
+              >
+                {tech.category}
+              </span>
+
+              {/* Icon */}
+              <div
+                className="text-4xl font-bold mb-2 transition-transform duration-500 group-hover:scale-110"
+                style={{ color: tech.color }}
+              >
+                {tech.icon}
+              </div>
+
+              {/* Name */}
+              <h3 className="text-sm font-bold text-white text-center">{tech.name}</h3>
+
+              {/* Number */}
+              <span className="text-[#333] font-mono text-[10px] mt-2">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile bottom text */}
+        <div className="mt-8 text-center">
+          <p className="text-xs text-[#666]">
+            {t('tech.bottomText')}{' '}
+            <span className="text-white">{t('tech.bottomHighlight')}</span>
+            {language === 'nl' && t('tech.bottomTextEnd')}
+          </p>
+        </div>
+      </div>
+
+      {/* Desktop: Horizontal scrolling container */}
       <div
         ref={containerRef}
-        className="absolute top-[65%] left-0 flex items-center gap-8 pl-8 z-10"
+        className="hidden md:flex absolute top-[65%] left-0 items-center gap-8 pl-8 z-10"
         style={{
           transform: 'translateY(-50%)',
           paddingLeft: '50vw',
@@ -214,8 +272,8 @@ export default function TechTunnel() {
         <div className="flex-shrink-0 w-[50vw]" />
       </div>
 
-      {/* Bottom text */}
-      <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between">
+      {/* Desktop bottom text */}
+      <div className="hidden md:flex absolute bottom-8 left-8 right-8 items-center justify-between">
         <p className="text-sm text-[#666] max-w-md">
           {t('tech.bottomText')}{' '}
           <span className="text-white">{t('tech.bottomHighlight')}</span>
