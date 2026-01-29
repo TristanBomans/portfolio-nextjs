@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { I18nProvider } from '@/lib/i18n'
+import CustomCursor from './components/CustomCursor'
 
 export const metadata: Metadata = {
   title: 'Tristan — Freelance Engineer',
@@ -20,9 +21,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html className="scroll-smooth">
-      <body className="antialiased bg-background text-foreground">
+    <html lang="en">
+      <body className="scanlines noise">
         <I18nProvider>
+          <CustomCursor />
           {children}
         </I18nProvider>
       </body>
