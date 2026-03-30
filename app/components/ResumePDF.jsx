@@ -479,24 +479,25 @@ export const PDFDownloadButton = ({ lang }) => {
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: "8px",
-        padding: "10px 16px",
+        gap: "6px",
+        padding: "8px 12px",
         border: "1px solid #262626",
         borderRadius: "8px",
         color: "#ededed",
         background: "rgba(255, 255, 255, 0.03)",
-        fontSize: "14px",
+        fontSize: "13px",
         fontWeight: "500",
         textDecoration: "none",
         transition: "all 0.2s ease",
         cursor: "pointer",
+        whiteSpace: "nowrap",
       }}
     >
       {({ loading }) => (
         <>
           <svg
-            width="16"
-            height="16"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

@@ -232,6 +232,12 @@ a {
     margin-top: 24px;
 }
 
+@media (min-width: 600px) {
+    .kpis {
+        flex-wrap: nowrap;
+    }
+}
+
 .kpi {
     font-size: 13px;
     padding: 6px 12px;
@@ -239,27 +245,35 @@ a {
     border-radius: 999px;
     color: var(--muted);
     background: rgba(255, 255, 255, 0.03);
+    white-space: nowrap;
 }
 
 /* Links */
 .links {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
+}
+
+@media (min-width: 600px) {
+    .links {
+        flex-wrap: nowrap;
+    }
 }
 
 .link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
+    gap: 6px;
+    padding: 8px 12px;
     border: 1px solid var(--border);
     border-radius: 8px;
     color: var(--text);
     background: rgba(255, 255, 255, 0.03);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .link:hover {
