@@ -348,6 +348,62 @@ a {
     line-height: 1.5;
 }
 
+/* Timeline with Children */
+.timeline-item-with-children {
+    position: relative;
+}
+
+.timeline-children {
+    margin-top: 20px;
+    padding-left: 16px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.timeline-child {
+    position: relative;
+    padding-left: 12px;
+}
+
+.timeline-child::before {
+    content: '';
+    position: absolute;
+    left: -17px;
+    top: 10px;
+    width: 8px;
+    height: 1px;
+    background: var(--border);
+    opacity: 0.6;
+}
+
+.child-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 2px;
+}
+
+.child-company {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.child-meta {
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.child-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0;
+}
+
 /* Tags */
 .taglist {
     display: flex;
