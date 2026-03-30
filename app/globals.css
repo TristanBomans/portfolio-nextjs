@@ -1,7 +1,7 @@
 :root {
-    --bg: #050505;
-    --panel: #0a0a0a;
-    --panel-2: #121212;
+    --bg: #000000;
+    --panel: #111111;
+    --panel-2: #1a1a1a;
     --border: #262626;
     --text: #ededed;
     --muted: #a1a1aa;
@@ -156,20 +156,8 @@ a {
 @media (min-width: 900px) {
     .grid-2 {
         grid-template-columns: 1fr 1fr;
-        align-items: stretch;
+        align-items: start;
     }
-}
-
-.right-col {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.right-col > .card {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 /* Cards */
@@ -180,12 +168,6 @@ a {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.grid-2 > .card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .card:hover {

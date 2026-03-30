@@ -125,7 +125,7 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="grid right-col" style={{ gap: '24px' }}>
+        <div className="grid" style={{ gap: '24px' }}>
           <section className="card">
             <div className="section availability-split">
               {/* Main Assignment */}
