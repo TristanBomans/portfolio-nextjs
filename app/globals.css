@@ -352,43 +352,60 @@ a {
     border-color: var(--muted);
 }
 
-/* Status Pills */
-.status-row {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 12px;
-    align-items: center;
-    margin-bottom: 12px;
+/* Availability Split Design */
+.availability-split {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 24px;
 }
 
-.status-row:last-child {
-    margin-bottom: 0;
+.availability-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
 }
 
-.status-pill {
-    font-size: 11px;
+.availability-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px currentColor;
+}
+
+.availability-indicator.red {
+    background: #ef4444;
+    color: rgba(239, 68, 68, 0.5);
+}
+
+.availability-indicator.green {
+    background: var(--accent);
+    color: var(--accent-glow);
+}
+
+.availability-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.availability-label {
+    font-size: 14px;
     font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 99px;
-    white-space: nowrap;
-    text-align: center;
+    color: var(--text);
 }
 
-.status-pill.unavailable {
-    background: rgba(239, 68, 68, 0.15);
-    color: #ef4444;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-.status-pill.open {
-    background: rgba(45, 212, 191, 0.15);
-    color: var(--accent);
-    border: 1px solid rgba(45, 212, 191, 0.3);
-}
-
-.status-text {
+.availability-detail {
     font-size: 13px;
     color: var(--muted);
+}
+
+.availability-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 -24px;
 }
 
 /* Language Switcher - REPLACED by nav-links styles above, but keeping for backward compat if needed or removing if unused */
