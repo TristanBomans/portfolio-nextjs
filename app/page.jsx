@@ -1,82 +1,84 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function monthsSince(start) {
   const now = new Date();
-  let months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
+  let months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    (now.getMonth() - start.getMonth());
   if (now.getDate() < start.getDate()) months -= 1;
   return Math.max(0, months);
 }
 
 export default function Page() {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState("en");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
     const p = new URLSearchParams(window.location.search);
-    if (p.get('lang') === 'nl') setLang('nl');
+    if (p.get("lang") === "nl") setLang("nl");
   }, []);
 
   const toggleLang = (newLang) => {
     setLang(newLang);
     const url = new URL(window.location);
-    url.searchParams.set('lang', newLang);
-    window.history.pushState({}, '', url);
+    url.searchParams.set("lang", newLang);
+    window.history.pushState({}, "", url);
   };
 
   const t = {
     nl: {
-      title: 'Tristan',
-      subtitle: 'Freelance Engineer',
-      role: '.NET, Azure Integrations, Next.js',
-      location: 'Vlaanderen, België',
-      kpi1: '8+ jaar ervaring',
-      kpi2: 'Hybrid · Remote',
-      aboutTitle: 'Over mij',
+      title: "Tristan",
+      subtitle: "Freelance Engineer",
+      role: ".NET, Azure Integrations, Next.js",
+      location: "Vlaanderen, België",
+      kpi1: "8+ jaar ervaring",
+      kpi2: "Hybrid · Remote",
+      aboutTitle: "Over mij",
       aboutText:
-        'IT boeit me enorm omdat je constant kan bijleren. Ik ben gepassioneerd door het inzetten van technologie om effectieve oplossingen te bouwen. Overdag focus ik me voornamelijk op integratieprojecten met Azure Logic Apps en Service Bus, en ontwikkel ik Azure Functions in .NET of andere talen naargelang de vereisten. Momenteel bouw ik ook een .NET-applicatie die gebruikmaakt van een op Azure gedeployeerd taalmodel.',
-      links: 'Links',
-      availability: 'Beschikbaarheid',
-      availabilityStatus: 'Volledig bezet',
-      availabilityStatusDesc: 'Puratos — Azure Integration Developer',
-      availabilitySideProjects: 'Side projects',
-      availabilitySideDesc: "Open voor kleine Azure / .NET / Next.js jobs",
-      stack: 'React/Next · .NET 8/9 · Azure',
-      tech: 'Tech',
-      experience: 'Ervaring',
-      present: 'heden',
-      monthsSuffix: 'mnd',
-      selectedWork: 'Geselecteerd werk',
-      live: 'Live',
-      hybrid: 'Hybride',
-      rights: 'Alle rechten voorbehouden.',
+        "IT boeit me enorm omdat je constant kan bijleren. Ik ben gepassioneerd door het inzetten van technologie om effectieve oplossingen te bouwen. Overdag focus ik me voornamelijk op integratieprojecten met Azure Logic Apps en Service Bus, en ontwikkel ik Azure Functions in .NET of andere talen naargelang de vereisten. Momenteel bouw ik ook een .NET-applicatie die gebruikmaakt van een op Azure gedeployeerd taalmodel.",
+      links: "Links",
+      availability: "Beschikbaarheid",
+      availabilityStatus: "Volledig bezet",
+      availabilityStatusDesc: "Puratos — Azure Integration Developer",
+      availabilitySideProjects: "Side projects",
+      availabilitySideDesc: "Open voor kleine jobs",
+      stack: "React/Next · .NET 8/9 · Azure",
+      tech: "Tech",
+      experience: "Ervaring",
+      present: "heden",
+      monthsSuffix: "mnd",
+      selectedWork: "Geselecteerd werk",
+      live: "Live",
+      hybrid: "Hybride",
+      rights: "Alle rechten voorbehouden.",
     },
     en: {
-      title: 'Tristan',
-      subtitle: 'Freelance Engineer',
-      role: '.NET, Azure Integrations, Next.js',
-      location: 'Flanders, Belgium',
-      kpi1: '8+ years experience',
-      kpi2: 'Hybrid · Remote',
-      aboutTitle: 'About',
+      title: "Tristan",
+      subtitle: "Freelance Engineer",
+      role: ".NET, Azure Integrations, Next.js",
+      location: "Flanders, Belgium",
+      kpi1: "8+ years experience",
+      kpi2: "Hybrid · Remote",
+      aboutTitle: "About",
       aboutText:
-        'I\'m fascinated by the constant learning that IT requires. I\'m passionate about using technology to build effective solutions. During the day, I focus mainly on integration projects with Azure Logic Apps and Service Bus, and I develop Azure Functions in .NET or other languages based on the requirements. I am also currently building a .NET application that uses an Azure-deployed language model.',
-      links: 'Links',
-      availability: 'Availability',
-      availabilityStatus: 'Fully committed',
-      availabilityStatusDesc: 'Puratos — Azure Integration Developer',
-      availabilitySideProjects: 'Side projects',
-      availabilitySideDesc: 'Open for small Azure / .NET / Next.js jobs',
-      tech: 'Tech',
-      experience: 'Experience',
-      present: 'present',
-      monthsSuffix: 'mo',
-      selectedWork: 'Selected Work',
-      live: 'Live',
-      hybrid: 'Hybrid',
-      rights: 'All rights reserved.',
+        "I'm fascinated by the constant learning that IT requires. I'm passionate about using technology to build effective solutions. During the day, I focus mainly on integration projects with Azure Logic Apps and Service Bus, and I develop Azure Functions in .NET or other languages based on the requirements. I am also currently building a .NET application that uses an Azure-deployed language model.",
+      links: "Links",
+      availability: "Availability",
+      availabilityStatus: "Fully committed",
+      availabilityStatusDesc: "Puratos — Azure Integration Developer",
+      availabilitySideProjects: "Side projects",
+      availabilitySideDesc: "Open for small jobs",
+      tech: "Tech",
+      experience: "Experience",
+      present: "present",
+      monthsSuffix: "mo",
+      selectedWork: "Selected Work",
+      live: "Live",
+      hybrid: "Hybrid",
+      rights: "All rights reserved.",
     },
   }[lang];
 
@@ -88,13 +90,15 @@ export default function Page() {
     <main className="container">
       {/* Language Switcher */}
 
-
       <div className="grid grid-2 animate-in">
         <section className="card">
           <div className="section">
-            <h1 className="h1">{t.title} <span className="h1-accent">— {t.subtitle}</span></h1>
-            <p className="h2">{t.role}</p>
-            <p className="h2" style={{ fontSize: '14px', marginTop: '4px' }}>{t.location}</p>
+            <h1 className="h1">
+              {t.title} <span className="h1-accent">— {t.subtitle}</span>
+            </h1>
+            <p className="h2" style={{ fontSize: "14px", marginTop: "4px" }}>
+              {t.location}
+            </p>
             <div className="kpis">
               <span className="kpi">{t.kpi1}</span>
               <span className="kpi">{t.kpi2}</span>
@@ -102,35 +106,54 @@ export default function Page() {
           </div>
           <div className="section">
             <div className="section-title">{t.aboutTitle}</div>
-            <p style={{ margin: 0, color: "var(--muted)", lineHeight: '1.6' }}>
+            <p style={{ margin: 0, color: "var(--muted)", lineHeight: "1.6" }}>
               {t.aboutText}
             </p>
           </div>
           <div className="section">
             <div className="section-title">{t.links}</div>
             <div className="links">
-              <a className="link" href="https://www.linkedin.com/in/tristan-bomans-3b34b5140/" target="_blank" rel="noreferrer">
+              <a
+                className="link"
+                href="https://www.linkedin.com/in/tristan-bomans-3b34b5140/"
+                target="_blank"
+                rel="noreferrer"
+              >
                 LinkedIn
               </a>
-              <a className="link" href="https://github.com/TristanBomans" target="_blank" rel="noreferrer">
+              <a
+                className="link"
+                href="https://github.com/TristanBomans"
+                target="_blank"
+                rel="noreferrer"
+              >
                 GitHub
               </a>
-              <a className="link" href="mailto:bomanstristan@gmail.com" target="_blank" rel="noreferrer">
+              <a
+                className="link"
+                href="mailto:bomanstristan@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+              >
                 E‑mail
               </a>
             </div>
           </div>
         </section>
 
-        <div className="grid right-col" style={{ gap: '24px' }}>
+        <div className="grid right-col" style={{ gap: "24px" }}>
           <section className="card">
             <div className="section availability-split">
               {/* Main Assignment */}
               <div className="availability-block main">
                 <div className="availability-indicator red" />
                 <div className="availability-content">
-                  <div className="availability-label">{t.availabilityStatus}</div>
-                  <div className="availability-detail">{t.availabilityStatusDesc}</div>
+                  <div className="availability-label">
+                    {t.availabilityStatus}
+                  </div>
+                  <div className="availability-detail">
+                    {t.availabilityStatusDesc}
+                  </div>
                 </div>
               </div>
 
@@ -140,22 +163,22 @@ export default function Page() {
               <div className="availability-block side">
                 <div className="availability-indicator green" />
                 <div className="availability-content">
-                  <div className="availability-label">{t.availabilitySideProjects}</div>
-                  <div className="availability-detail">{t.availabilitySideDesc}</div>
+                  <div className="availability-label">
+                    {t.availabilitySideProjects}
+                  </div>
+                  <div className="availability-detail">
+                    {t.availabilitySideDesc}
+                  </div>
                 </div>
               </div>
             </div>
             <div className="section">
               <div className="section-title">{t.tech}</div>
               <div className="taglist">
-                <span className="tag">.NET 8/9</span>
                 <span className="tag">C#</span>
-                <span className="tag">Azure</span>
-                <span className="tag">SQL</span>
-                <span className="tag">Next.js</span>
+                <span className="tag">Azure</span>{" "}
                 <span className="tag">React</span>
                 <span className="tag">Angular</span>
-                <span className="tag">Cloudflare</span>
               </div>
             </div>
           </section>
@@ -164,30 +187,78 @@ export default function Page() {
             <div className="section">
               <div className="section-title">{t.selectedWork}</div>
               <div className="timeline">
-                <a className="timeline-item" href="https://groepspraktijkmeiselaan.be/" target="_blank" rel="noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
+                <a
+                  className="timeline-item"
+                  href="https://groepspraktijkmeiselaan.be/"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: "block", textDecoration: "none" }}
+                >
                   <div className="timeline-dot"></div>
                   <div className="item-header">
                     <h4 className="item-title">Groepspraktijk Meiselaan</h4>
-                    <span className="item-meta" style={{ color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
+                    <span
+                      className="item-meta"
+                      style={{
+                        color: "var(--accent)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: "8px",
+                          height: "8px",
+                          borderRadius: "50%",
+                          background: "#22c55e",
+                          display: "inline-block",
+                        }}
+                      ></span>
                       {t.live}
                     </span>
                   </div>
                   <p className="item-desc">
-                    {lang === 'nl' ? 'Angular + .NET 9 + SQL · Moderne website met interactieve elementen' : 'Angular + .NET 9 + SQL · Modern website with some interactive elements'}
+                    {lang === "nl"
+                      ? "Angular + .NET 9 + SQL · Moderne website met interactieve elementen"
+                      : "Angular + .NET 9 + SQL · Modern website with some interactive elements"}
                   </p>
                 </a>
-                <a className="timeline-item" href="https://physiofocus.be/" target="_blank" rel="noreferrer" style={{ display: 'block', textDecoration: 'none' }}>
+                <a
+                  className="timeline-item"
+                  href="https://physiofocus.be/"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: "block", textDecoration: "none" }}
+                >
                   <div className="timeline-dot"></div>
                   <div className="item-header">
                     <h4 className="item-title">PhysioFocus</h4>
-                    <span className="item-meta" style={{ color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
+                    <span
+                      className="item-meta"
+                      style={{
+                        color: "var(--accent)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "6px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: "8px",
+                          height: "8px",
+                          borderRadius: "50%",
+                          background: "#22c55e",
+                          display: "inline-block",
+                        }}
+                      ></span>
                       {t.live}
                     </span>
                   </div>
                   <p className="item-desc">
-                    {lang === 'nl' ? 'Next.js · Cloudflare · Moderne website met interactieve elementen' : 'Next.js · Cloudflare · Modern website with some interactive elements'}
+                    {lang === "nl"
+                      ? "Next.js · Cloudflare · Moderne website met interactieve elementen"
+                      : "Next.js · Cloudflare · Modern website with some interactive elements"}
                   </p>
                 </a>
               </div>
@@ -196,15 +267,25 @@ export default function Page() {
         </div>
       </div>
 
-      <section className="card animate-in" style={{ marginTop: 24, animationDelay: '0.1s' }}>
+      <section
+        className="card animate-in"
+        style={{ marginTop: 24, animationDelay: "0.1s" }}
+      >
         <div className="section">
           <div className="section-title">{t.experience}</div>
           <div className="timeline">
             <div className="timeline-item">
-              <div className="timeline-dot" style={{ background: 'var(--accent)' }}></div>
+              <div
+                className="timeline-dot"
+                style={{ background: "var(--accent)" }}
+              ></div>
               <div className="item-header">
-                <h4 className="item-title">Puratos — Freelance Azure Integration Developer</h4>
-                <span className="item-meta">{lang === 'nl' ? 'mrt. 2025' : 'Mar 2025'} — {t.present}</span>
+                <h4 className="item-title">
+                  Puratos — Freelance Azure Integration Developer
+                </h4>
+                <span className="item-meta">
+                  {lang === "nl" ? "mrt. 2025" : "Mar 2025"} — {t.present}
+                </span>
               </div>
               <p className="item-desc">Dilbeek · {t.hybrid}</p>
             </div>
@@ -212,9 +293,13 @@ export default function Page() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">Fluvius — Freelance .NET Developer</h4>
+                <h4 className="item-title">
+                  Fluvius — Freelance .NET Developer
+                </h4>
                 <span className="item-meta">
-                  {lang === 'nl' ? 'jan. 2024 — mrt. 2025' : 'Jan 2024 — Mar 2025'}
+                  {lang === "nl"
+                    ? "jan. 2024 — mrt. 2025"
+                    : "Jan 2024 — Mar 2025"}
                 </span>
               </div>
               <p className="item-desc">Melle · {t.hybrid}</p>
@@ -223,9 +308,13 @@ export default function Page() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">Ferm vzw — Freelance .NET Developer</h4>
+                <h4 className="item-title">
+                  Ferm vzw — Freelance .NET Developer
+                </h4>
                 <span className="item-meta">
-                  {lang === 'nl' ? 'jan. 2022 — dec. 2023' : 'Jan 2022 — Dec 2023'}
+                  {lang === "nl"
+                    ? "jan. 2022 — dec. 2023"
+                    : "Jan 2022 — Dec 2023"}
                 </span>
               </div>
               <p className="item-desc">Leuven · {t.hybrid}</p>
@@ -234,9 +323,13 @@ export default function Page() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">Delen Private Bank — .NET Developer</h4>
+                <h4 className="item-title">
+                  Delen Private Bank — .NET Developer
+                </h4>
                 <span className="item-meta">
-                  {lang === 'nl' ? 'aug. 2020 — jan. 2022' : 'Aug 2020 — Jan 2022'}
+                  {lang === "nl"
+                    ? "aug. 2020 — jan. 2022"
+                    : "Aug 2020 — Jan 2022"}
                 </span>
               </div>
               <p className="item-desc">Antwerpen</p>
@@ -245,9 +338,13 @@ export default function Page() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">Cegeka — Analyst Developer (Deloitte)</h4>
+                <h4 className="item-title">
+                  Cegeka — Analyst Developer (Deloitte)
+                </h4>
                 <span className="item-meta">
-                  {lang === 'nl' ? 'feb. 2020 — aug. 2020' : 'Feb 2020 — Aug 2020'}
+                  {lang === "nl"
+                    ? "feb. 2020 — aug. 2020"
+                    : "Feb 2020 — Aug 2020"}
                 </span>
               </div>
               <p className="item-desc">Zaventem — Tax & Legal</p>
@@ -256,20 +353,30 @@ export default function Page() {
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">Cegeka — Analyst Developer (AT&T)</h4>
+                <h4 className="item-title">
+                  Cegeka — Analyst Developer (AT&T)
+                </h4>
                 <span className="item-meta">
-                  {lang === 'nl' ? 'aug. 2018 — feb. 2020' : 'Aug 2018 — Feb 2020'}
+                  {lang === "nl"
+                    ? "aug. 2018 — feb. 2020"
+                    : "Aug 2018 — Feb 2020"}
                 </span>
               </div>
-              <p className="item-desc">Vilvoorde — Billing, full‑stack .NET & Angular</p>
+              <p className="item-desc">
+                Vilvoorde — Billing, full‑stack .NET & Angular
+              </p>
             </div>
 
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">Cegeka — Intern .NET Developer (AT&T)</h4>
+                <h4 className="item-title">
+                  Cegeka — Intern .NET Developer (AT&T)
+                </h4>
                 <span className="item-meta">
-                  {lang === 'nl' ? 'feb. 2018 — mei 2018' : 'Feb 2018 — May 2018'}
+                  {lang === "nl"
+                    ? "feb. 2018 — mei 2018"
+                    : "Feb 2018 — May 2018"}
                 </span>
               </div>
               <p className="item-desc">Vilvoorde</p>
@@ -278,7 +385,9 @@ export default function Page() {
         </div>
       </section>
 
-      <div className="footer">© {new Date().getFullYear()} Tristan — {t.rights}</div>
+      <div className="footer">
+        © {new Date().getFullYear()} Tristan — {t.rights}
+      </div>
     </main>
   );
 }
