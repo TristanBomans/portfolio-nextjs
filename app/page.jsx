@@ -38,6 +38,7 @@ const translations = {
     live: "Live",
     hybrid: "Hybride",
     onsite: "On-site",
+    freelance: "Freelance",
     rights: "Alle rechten voorbehouden.",
   },
   en: {
@@ -64,6 +65,7 @@ const translations = {
     live: "Live",
     hybrid: "Hybrid",
     onsite: "On-site",
+    freelance: "Freelance",
     rights: "All rights reserved.",
   },
 };
@@ -120,6 +122,7 @@ export default function Page() {
           <div className="section">
             <div className="section-title">{t.links}</div>
             <div className="links">
+              <PDFDownloadButton lang={lang} />
               <a
                 className="link"
                 href="https://www.linkedin.com/in/tristan-bomans-3b34b5140/"
@@ -144,7 +147,6 @@ export default function Page() {
               >
                 E‑mail
               </a>
-              <PDFDownloadButton lang={lang} />
             </div>
           </div>
         </section>
@@ -289,20 +291,20 @@ export default function Page() {
               ></div>
               <div className="item-header">
                 <h4 className="item-title">
-                  Puratos — Freelance Azure Integration Developer
+                  Puratos — Azure Integration Developer
                 </h4>
                 <span className="item-meta">
                   {lang === "nl" ? "mrt. 2025" : "Mar 2025"} — {t.present}
                 </span>
               </div>
-              <p className="item-desc">Dilbeek · {t.hybrid}</p>
+              <p className="item-desc">{t.freelance} · Dilbeek · {t.hybrid}</p>
             </div>
 
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
                 <h4 className="item-title">
-                  Fluvius — Freelance .NET Developer
+                  Fluvius — .NET Developer
                 </h4>
                 <span className="item-meta">
                   {lang === "nl"
@@ -310,14 +312,14 @@ export default function Page() {
                     : "Jan 2024 — Mar 2025"}
                 </span>
               </div>
-              <p className="item-desc">Melle · {t.hybrid}</p>
+              <p className="item-desc">{t.freelance} · Melle · {t.hybrid}</p>
             </div>
 
             <div className="timeline-item">
               <div className="timeline-dot"></div>
               <div className="item-header">
                 <h4 className="item-title">
-                  Ferm vzw — Freelance .NET Developer
+                  Ferm vzw — .NET Developer
                 </h4>
                 <span className="item-meta">
                   {lang === "nl"
@@ -325,7 +327,7 @@ export default function Page() {
                     : "Jan 2022 — Dec 2023"}
                 </span>
               </div>
-              <p className="item-desc">Leuven · {t.hybrid}</p>
+              <p className="item-desc">{t.freelance} · Leuven · {t.hybrid}</p>
             </div>
 
             <div className="timeline-item">
