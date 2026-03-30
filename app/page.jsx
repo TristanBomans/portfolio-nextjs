@@ -37,6 +37,7 @@ const translations = {
     selectedWork: "Geselecteerd werk",
     live: "Live",
     hybrid: "Hybride",
+    onsite: "On-site",
     rights: "Alle rechten voorbehouden.",
   },
   en: {
@@ -62,6 +63,7 @@ const translations = {
     selectedWork: "Selected Work",
     live: "Live",
     hybrid: "Hybrid",
+    onsite: "On-site",
     rights: "All rights reserved.",
   },
 };
@@ -338,7 +340,7 @@ export default function Page() {
                     : "Aug 2020 — Jan 2022"}
                 </span>
               </div>
-              <p className="item-desc">Antwerpen</p>
+              <p className="item-desc">Antwerpen · {t.onsite}</p>
             </div>
 
             <div className="timeline-item">
@@ -353,7 +355,7 @@ export default function Page() {
                     : "Feb 2020 — Aug 2020"}
                 </span>
               </div>
-              <p className="item-desc">Zaventem — Tax & Legal</p>
+              <p className="item-desc">Zaventem · {t.onsite}</p>
             </div>
 
             <div className="timeline-item">
@@ -368,9 +370,7 @@ export default function Page() {
                     : "Aug 2018 — Feb 2020"}
                 </span>
               </div>
-              <p className="item-desc">
-                Vilvoorde — Billing, full‑stack .NET & Angular
-              </p>
+              <p className="item-desc">Vilvoorde · {t.onsite}</p>
             </div>
 
             <div className="timeline-item">
@@ -385,7 +385,7 @@ export default function Page() {
                     : "Feb 2018 — May 2018"}
                 </span>
               </div>
-              <p className="item-desc">Vilvoorde</p>
+              <p className="item-desc">Vilvoorde · {t.onsite}</p>
             </div>
           </div>
         </div>
