@@ -33,9 +33,9 @@ const translations = {
     stack: "React/Next · .NET 8/9 · Azure",
     tech: "Tech",
     experience: "Ervaring",
-    present: "heden",
+    present: "Heden",
     monthsSuffix: "mnd",
-    selectedWork: "Geselecteerd werk",
+    selectedWork: "Projecten",
     live: "Live",
     hybrid: "Hybride",
     onsite: "On-site",
@@ -56,7 +56,7 @@ const translations = {
       "I'm drawn to IT because there's always something new to learn. I enjoy building practical, effective solutions using technology.\n\nIn my day-to-day work, I focus on integration projects in Azure, working with services like Logic Apps, Service Bus, and Azure Functions in .NET.",
     links: "Links",
     availability: "Availability",
-    availabilityStatus: "Fully committed",
+    availabilityStatus: "On a project",
     availabilityStatusDesc: "Puratos — Azure Integration Developer",
     availabilitySideProjects: "Side projects",
     availabilitySideDesc: "Open for side projects",
@@ -64,7 +64,7 @@ const translations = {
     experience: "Experience",
     present: "present",
     monthsSuffix: "mo",
-    selectedWork: "Selected Work",
+    selectedWork: "Projects",
     live: "Live",
     hybrid: "Hybrid",
     onsite: "On-site",
@@ -242,11 +242,7 @@ export default function Page() {
                       {t.live}
                     </span>
                   </div>
-                  <p className="item-desc">
-                    {lang === "nl"
-                      ? "Angular + .NET 9 + SQL · Moderne website met interactieve elementen"
-                      : "Angular + .NET 9 + SQL · Modern website with some interactive elements"}
-                  </p>
+                  <p className="item-desc">Angular · .NET 9 · SQL</p>
                 </a>
                 <a
                   className="timeline-item"
@@ -279,11 +275,7 @@ export default function Page() {
                       {t.live}
                     </span>
                   </div>
-                  <p className="item-desc">
-                    {lang === "nl"
-                      ? "Next.js · Cloudflare · Moderne website met interactieve elementen"
-                      : "Next.js · Cloudflare · Modern website with some interactive elements"}
-                  </p>
+                  <p className="item-desc">Next.js · Cloudflare · Resend</p>
                 </a>
               </div>
             </div>
@@ -308,7 +300,7 @@ export default function Page() {
                   Puratos — Azure Integration Developer
                 </h4>
                 <span className="item-meta">
-                  {lang === "nl" ? "mrt. 2025" : "Mar 2025"} — {t.present}
+                  {lang === "nl" ? "Mrt 2025" : "Mar 2025"} — {t.present}
                 </span>
               </div>
               <p className="item-desc">{t.freelance} · Dilbeek · {t.hybrid}</p>
@@ -322,7 +314,7 @@ export default function Page() {
                 </h4>
                 <span className="item-meta">
                   {lang === "nl"
-                    ? "jan. 2024 — mrt. 2025"
+                    ? "Jan 2024 — Mrt 2025"
                     : "Jan 2024 — Mar 2025"}
                 </span>
               </div>
@@ -337,7 +329,7 @@ export default function Page() {
                 </h4>
                 <span className="item-meta">
                   {lang === "nl"
-                    ? "jan. 2022 — dec. 2023"
+                    ? "Jan 2022 — Dec 2023"
                     : "Jan 2022 — Dec 2023"}
                 </span>
               </div>
@@ -352,7 +344,7 @@ export default function Page() {
                 </h4>
                 <span className="item-meta">
                   {lang === "nl"
-                    ? "aug. 2020 — jan. 2022"
+                    ? "Aug 2020 — Jan 2022"
                     : "Aug 2020 — Jan 2022"}
                 </span>
               </div>
@@ -388,7 +380,7 @@ export default function Page() {
                 <div className="timeline-child">
                   <div className="child-info">
                     <span className="child-company">AT&T</span>
-                    <p className="child-desc">Intern .NET Developer · Vilvoorde · {t.onsite}</p>
+                    <p className="child-desc">{t.internal} · Analyst Developer · Vilvoorde · {t.onsite}</p>
                   </div>
                   <span className="child-meta">Feb 2018 — May 2018</span>
                 </div>
