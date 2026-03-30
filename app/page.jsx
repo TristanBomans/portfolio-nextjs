@@ -40,8 +40,10 @@ export default function Page() {
         'IT boeit me enorm omdat je constant kan bijleren. Ik ben gepassioneerd door het inzetten van technologie om effectieve oplossingen te bouwen. Overdag focus ik me voornamelijk op integratieprojecten met Azure Logic Apps en Service Bus, en ontwikkel ik Azure Functions in .NET of andere talen naargelang de vereisten. Momenteel bouw ik ook een .NET-applicatie die gebruikmaakt van een op Azure gedeployeerd taalmodel.',
       links: 'Links',
       availability: 'Beschikbaarheid',
-      availabilityTitle: 'Bezet op longterm opdracht',
-      availabilityDesc: "Momenteel werkzaam bij Puratos, maar open voor kleine projectjes. Azure integraties, .NET API's, Next.js frontends.",
+      availabilityStatus: 'Niet beschikbaar',
+      availabilityStatusDesc: 'Bezet bij Puratos (longterm)',
+      availabilitySideProjects: 'Open voor side projects',
+      availabilitySideDesc: "Kleine opportuniteiten Azure/.NET/Next.js",
       stack: 'React/Next · .NET 8/9 · Azure',
       tech: 'Tech',
       experience: 'Ervaring',
@@ -65,9 +67,10 @@ export default function Page() {
         'I\'m fascinated by the constant learning that IT requires. I\'m passionate about using technology to build effective solutions. During the day, I focus mainly on integration projects with Azure Logic Apps and Service Bus, and I develop Azure Functions in .NET or other languages based on the requirements. I am also currently building a .NET application that uses an Azure-deployed language model.',
       links: 'Links',
       availability: 'Availability',
-      availabilityTitle: 'Currently on longterm assignment',
-      availabilityDesc: "Currently working at Puratos, but open to small side projects. Azure integrations, .NET APIs, Next.js frontends.",
-      stack: 'React/Next · .NET 8/9 · Azure',
+      availabilityStatus: 'Not available',
+      availabilityStatusDesc: 'Working at Puratos (longterm)',
+      availabilitySideProjects: 'Open to side projects',
+      availabilitySideDesc: 'Small Azure/.NET/Next.js opportunities',
       tech: 'Tech',
       experience: 'Experience',
       present: 'present',
@@ -126,12 +129,17 @@ export default function Page() {
           <section className="card">
             <div className="section">
               <div className="section-title">{t.availability}</div>
-              <div className="timeline-item" style={{ paddingLeft: '0' }}>
-                <div className="item-header">
-                  <h4 className="item-title">{t.availabilityTitle}</h4>
-                </div>
-                <p className="item-desc">{t.availabilityDesc}</p>
-                <small style={{ display: 'block', marginTop: '8px', color: 'var(--accent)' }}>{t.stack}</small>
+
+              {/* Status */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                <span className="status-pill unavailable">{t.availabilityStatus}</span>
+                <span className="status-text">{t.availabilityStatusDesc}</span>
+              </div>
+
+              {/* Side projects */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span className="status-pill open">{t.availabilitySideProjects}</span>
+                <span className="status-text">{t.availabilitySideDesc}</span>
               </div>
             </div>
             <div className="section">

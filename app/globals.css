@@ -352,6 +352,32 @@ a {
     border-color: var(--muted);
 }
 
+/* Status Pills */
+.status-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 99px;
+    white-space: nowrap;
+}
+
+.status-pill.unavailable {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.status-pill.open {
+    background: rgba(45, 212, 191, 0.15);
+    color: var(--accent);
+    border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.status-text {
+    font-size: 13px;
+    color: var(--muted);
+}
+
 /* Language Switcher - REPLACED by nav-links styles above, but keeping for backward compat if needed or removing if unused */
 /* .header-row, .lang-switch, .lang-btn removed or refactored into topbar */
 
