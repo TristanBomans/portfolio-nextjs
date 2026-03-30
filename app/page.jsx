@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { PDFDownloadButton } from "./components/ResumePDF";
 
 function monthsSince(start) {
   const now = new Date();
@@ -10,6 +11,60 @@ function monthsSince(start) {
   if (now.getDate() < start.getDate()) months -= 1;
   return Math.max(0, months);
 }
+
+const translations = {
+  nl: {
+    title: "Tristan",
+    subtitle: "Freelance Engineer",
+    role: ".NET, Azure Integrations, Next.js",
+    location: "Vlaanderen, België",
+    kpi1: "8+ jaar ervaring",
+    kpi2: "Hybrid · Remote",
+    aboutTitle: "Over mij",
+    aboutText:
+      "IT fascineert me omdat er altijd iets nieuws te leren valt. Ik haal energie uit het bouwen van doordachte, effectieve oplossingen met technologie.\n\nIn mijn dagelijkse werk focus ik op integratieprojecten met Azure, waarbij ik onder andere werk met Logic Apps, Service Bus en Azure Functions in .NET. Daarnaast experimenteer ik graag met nieuwe technologieën — zo bouw ik momenteel een .NET-applicatie die gebruikmaakt van een taalmodel op Azure.",
+    links: "Links",
+    availability: "Beschikbaarheid",
+    availabilityStatus: "Actief op project",
+    availabilityStatusDesc: "Puratos — Azure Integration Developer",
+    availabilitySideProjects: "Side projects",
+    availabilitySideDesc: "Open voor side projects",
+    stack: "React/Next · .NET 8/9 · Azure",
+    tech: "Tech",
+    experience: "Ervaring",
+    present: "heden",
+    monthsSuffix: "mnd",
+    selectedWork: "Geselecteerd werk",
+    live: "Live",
+    hybrid: "Hybride",
+    rights: "Alle rechten voorbehouden.",
+  },
+  en: {
+    title: "Tristan",
+    subtitle: "Freelance Engineer",
+    role: ".NET, Azure Integrations, Next.js",
+    location: "Flanders, Belgium",
+    kpi1: "8+ years experience",
+    kpi2: "Hybrid · Remote",
+    aboutTitle: "About",
+    aboutText:
+      "I'm drawn to IT because there's always something new to learn. I enjoy building practical, effective solutions using technology.\n\nIn my day-to-day work, I focus on integration projects in Azure, working with services like Logic Apps, Service Bus, and Azure Functions in .NET. I'm also currently building a .NET application that leverages an Azure-hosted language model.",
+    links: "Links",
+    availability: "Availability",
+    availabilityStatus: "Fully committed",
+    availabilityStatusDesc: "Puratos — Azure Integration Developer",
+    availabilitySideProjects: "Side projects",
+    availabilitySideDesc: "Open for side projects",
+    tech: "Tech",
+    experience: "Experience",
+    present: "present",
+    monthsSuffix: "mo",
+    selectedWork: "Selected Work",
+    live: "Live",
+    hybrid: "Hybrid",
+    rights: "All rights reserved.",
+  },
+};
 
 export default function Page() {
   const [lang, setLang] = useState("en");
@@ -28,59 +83,7 @@ export default function Page() {
     window.history.pushState({}, "", url);
   };
 
-  const t = {
-    nl: {
-      title: "Tristan",
-      subtitle: "Freelance Engineer",
-      role: ".NET, Azure Integrations, Next.js",
-      location: "Vlaanderen, België",
-      kpi1: "8+ jaar ervaring",
-      kpi2: "Hybrid · Remote",
-      aboutTitle: "Over mij",
-      aboutText:
-        "IT boeit me enorm omdat je constant kan bijleren. Ik ben gepassioneerd door het inzetten van technologie om effectieve oplossingen te bouwen. Overdag focus ik me voornamelijk op integratieprojecten met Azure Logic Apps en Service Bus, en ontwikkel ik Azure Functions in .NET of andere talen naargelang de vereisten. Momenteel bouw ik ook een .NET-applicatie die gebruikmaakt van een op Azure gedeployeerd taalmodel.",
-      links: "Links",
-      availability: "Beschikbaarheid",
-      availabilityStatus: "Volledig bezet",
-      availabilityStatusDesc: "Puratos — Azure Integration Developer",
-      availabilitySideProjects: "Side projects",
-      availabilitySideDesc: "Open voor kleine jobs",
-      stack: "React/Next · .NET 8/9 · Azure",
-      tech: "Tech",
-      experience: "Ervaring",
-      present: "heden",
-      monthsSuffix: "mnd",
-      selectedWork: "Geselecteerd werk",
-      live: "Live",
-      hybrid: "Hybride",
-      rights: "Alle rechten voorbehouden.",
-    },
-    en: {
-      title: "Tristan",
-      subtitle: "Freelance Engineer",
-      role: ".NET, Azure Integrations, Next.js",
-      location: "Flanders, Belgium",
-      kpi1: "8+ years experience",
-      kpi2: "Hybrid · Remote",
-      aboutTitle: "About",
-      aboutText:
-        "I'm fascinated by the constant learning that IT requires. I'm passionate about using technology to build effective solutions. During the day, I focus mainly on integration projects with Azure Logic Apps and Service Bus, and I develop Azure Functions in .NET or other languages based on the requirements. I am also currently building a .NET application that uses an Azure-deployed language model.",
-      links: "Links",
-      availability: "Availability",
-      availabilityStatus: "Fully committed",
-      availabilityStatusDesc: "Puratos — Azure Integration Developer",
-      availabilitySideProjects: "Side projects",
-      availabilitySideDesc: "Open for small jobs",
-      tech: "Tech",
-      experience: "Experience",
-      present: "present",
-      monthsSuffix: "mo",
-      selectedWork: "Selected Work",
-      live: "Live",
-      hybrid: "Hybrid",
-      rights: "All rights reserved.",
-    },
-  }[lang];
+  const t = translations[lang];
 
   const monthsPuratos = monthsSince(new Date(2025, 2, 1)); // March 1, 2025
 
@@ -106,9 +109,11 @@ export default function Page() {
           </div>
           <div className="section">
             <div className="section-title">{t.aboutTitle}</div>
-            <p style={{ margin: 0, color: "var(--muted)", lineHeight: "1.6" }}>
-              {t.aboutText}
-            </p>
+            {t.aboutText.split('\n\n').map((paragraph, i) => (
+              <p key={i} style={{ margin: i === 0 ? 0 : '12px 0 0 0', color: "var(--muted)", lineHeight: "1.6" }}>
+                {paragraph}
+              </p>
+            ))}
           </div>
           <div className="section">
             <div className="section-title">{t.links}</div>
@@ -137,6 +142,7 @@ export default function Page() {
               >
                 E‑mail
               </a>
+              <PDFDownloadButton lang={lang} />
             </div>
           </div>
         </section>
