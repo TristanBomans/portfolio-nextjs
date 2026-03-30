@@ -131,13 +131,13 @@ export default function Page() {
               <div className="section-title">{t.availability}</div>
 
               {/* Status */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+              <div className="status-row">
                 <span className="status-pill unavailable">{t.availabilityStatus}</span>
                 <span className="status-text">{t.availabilityStatusDesc}</span>
               </div>
 
               {/* Side projects */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div className="status-row">
                 <span className="status-pill open">{t.availabilitySideProjects}</span>
                 <span className="status-text">{t.availabilitySideDesc}</span>
               </div>
