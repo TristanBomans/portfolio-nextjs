@@ -125,6 +125,7 @@ export default function Page() {
                   margin: i === 0 ? 0 : "12px 0 0 0",
                   color: "var(--muted)",
                   lineHeight: "1.6",
+                  fontSize: "14.25px",
                 }}
               >
                 {paragraph}
