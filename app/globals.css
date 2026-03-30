@@ -363,41 +363,26 @@ a {
 }
 
 /* Timeline with Children */
-.timeline-item-with-children {
-    position: relative;
-}
-
 .timeline-children {
-    margin-top: 20px;
-    padding-left: 16px;
-    border-left: 1px solid var(--border);
+    margin-top: 12px;
+    margin-left: 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
+    padding-left: 0;
 }
 
 .timeline-child {
-    position: relative;
-    padding-left: 12px;
-}
-
-.timeline-child::before {
-    content: '';
-    position: absolute;
-    left: -17px;
-    top: 10px;
-    width: 8px;
-    height: 1px;
-    background: var(--border);
-    opacity: 0.6;
-}
-
-.child-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
-    margin-bottom: 2px;
+    gap: 16px;
+}
+
+.child-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
 }
 
 .child-company {
@@ -406,16 +391,17 @@ a {
     color: var(--text);
 }
 
-.child-meta {
+.child-desc {
     font-size: 12px;
     color: var(--muted);
-    white-space: nowrap;
+    margin: 0;
 }
 
-.child-desc {
-    font-size: 13px;
+.child-meta {
+    font-size: 11px;
     color: var(--muted);
-    margin: 0;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
 }
 
 /* Tags */

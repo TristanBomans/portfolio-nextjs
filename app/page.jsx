@@ -39,6 +39,7 @@ const translations = {
     live: "Live",
     hybrid: "Hybride",
     onsite: "On-site",
+    internal: "Intern",
     freelance: "Freelance",
     rights: "Alle rechten voorbehouden.",
   },
@@ -67,6 +68,7 @@ const translations = {
     live: "Live",
     hybrid: "Hybrid",
     onsite: "On-site",
+    internal: "Internal",
     freelance: "Freelance",
     rights: "All rights reserved.",
   },
@@ -354,16 +356,13 @@ export default function Page() {
                     : "Aug 2020 — Jan 2022"}
                 </span>
               </div>
-              <p className="item-desc">Antwerpen · {t.onsite}</p>
+              <p className="item-desc">{t.internal} · Antwerpen · {t.onsite}</p>
             </div>
 
             <div className="timeline-item timeline-item-with-children">
               <div className="timeline-dot"></div>
               <div className="item-header">
                 <h4 className="item-title">Cegeka</h4>
-                <span className="item-meta">
-                  {lang === "nl" ? "2018 — 2020" : "2018 — 2020"}
-                </span>
               </div>
               <p className="item-desc">
                 {lang === "nl" ? "Contractor bij diverse klanten" : "Contractor at various clients"}
@@ -371,27 +370,27 @@ export default function Page() {
               
               <div className="timeline-children">
                 <div className="timeline-child">
-                  <div className="child-header">
+                  <div className="child-info">
                     <span className="child-company">Deloitte</span>
-                    <span className="child-meta">Feb 2020 — Aug 2020</span>
+                    <p className="child-desc">Analyst Developer · Zaventem · {t.onsite}</p>
                   </div>
-                  <p className="child-desc">Analyst Developer · Zaventem · {t.onsite}</p>
+                  <span className="child-meta">Feb 2020 — Aug 2020</span>
                 </div>
 
                 <div className="timeline-child">
-                  <div className="child-header">
+                  <div className="child-info">
                     <span className="child-company">AT&T</span>
-                    <span className="child-meta">Aug 2018 — Feb 2020</span>
+                    <p className="child-desc">Analyst Developer · Vilvoorde · {t.onsite}</p>
                   </div>
-                  <p className="child-desc">Analyst Developer · Vilvoorde · {t.onsite}</p>
+                  <span className="child-meta">Aug 2018 — Feb 2020</span>
                 </div>
 
                 <div className="timeline-child">
-                  <div className="child-header">
+                  <div className="child-info">
                     <span className="child-company">AT&T</span>
-                    <span className="child-meta">Feb 2018 — May 2018</span>
+                    <p className="child-desc">Intern .NET Developer · Vilvoorde · {t.onsite}</p>
                   </div>
-                  <p className="child-desc">Intern .NET Developer · Vilvoorde · {t.onsite}</p>
+                  <span className="child-meta">Feb 2018 — May 2018</span>
                 </div>
               </div>
             </div>
