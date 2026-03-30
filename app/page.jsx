@@ -343,49 +343,43 @@ export default function Page() {
               <p className="item-desc">Antwerpen · {t.onsite}</p>
             </div>
 
-            <div className="timeline-item">
+            <div className="timeline-item timeline-item-with-children">
               <div className="timeline-dot"></div>
               <div className="item-header">
-                <h4 className="item-title">
-                  Cegeka — Analyst Developer (Deloitte)
-                </h4>
+                <h4 className="item-title">Cegeka</h4>
                 <span className="item-meta">
-                  {lang === "nl"
-                    ? "feb. 2020 — aug. 2020"
-                    : "Feb 2020 — Aug 2020"}
+                  {lang === "nl" ? "2018 — 2020" : "2018 — 2020"}
                 </span>
               </div>
-              <p className="item-desc">Zaventem · {t.onsite}</p>
-            </div>
+              <p className="item-desc">
+                {lang === "nl" ? "Contractor bij diverse klanten" : "Contractor at various clients"}
+              </p>
+              
+              <div className="timeline-children">
+                <div className="timeline-child">
+                  <div className="child-header">
+                    <span className="child-company">Deloitte</span>
+                    <span className="child-meta">Feb 2020 — Aug 2020</span>
+                  </div>
+                  <p className="child-desc">Analyst Developer · Zaventem · {t.onsite}</p>
+                </div>
 
-            <div className="timeline-item">
-              <div className="timeline-dot"></div>
-              <div className="item-header">
-                <h4 className="item-title">
-                  Cegeka — Analyst Developer (AT&T)
-                </h4>
-                <span className="item-meta">
-                  {lang === "nl"
-                    ? "aug. 2018 — feb. 2020"
-                    : "Aug 2018 — Feb 2020"}
-                </span>
-              </div>
-              <p className="item-desc">Vilvoorde · {t.onsite}</p>
-            </div>
+                <div className="timeline-child">
+                  <div className="child-header">
+                    <span className="child-company">AT&T</span>
+                    <span className="child-meta">Aug 2018 — Feb 2020</span>
+                  </div>
+                  <p className="child-desc">Analyst Developer · Vilvoorde · {t.onsite}</p>
+                </div>
 
-            <div className="timeline-item">
-              <div className="timeline-dot"></div>
-              <div className="item-header">
-                <h4 className="item-title">
-                  Cegeka — Intern .NET Developer (AT&T)
-                </h4>
-                <span className="item-meta">
-                  {lang === "nl"
-                    ? "feb. 2018 — mei 2018"
-                    : "Feb 2018 — May 2018"}
-                </span>
+                <div className="timeline-child">
+                  <div className="child-header">
+                    <span className="child-company">AT&T</span>
+                    <span className="child-meta">Feb 2018 — May 2018</span>
+                  </div>
+                  <p className="child-desc">Intern .NET Developer · Vilvoorde · {t.onsite}</p>
+                </div>
               </div>
-              <p className="item-desc">Vilvoorde · {t.onsite}</p>
             </div>
           </div>
         </div>
