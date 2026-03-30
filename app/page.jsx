@@ -34,7 +34,6 @@ export default function Page() {
       location: 'Vlaanderen, België',
       kpi1: '8+ jaar ervaring',
       kpi2: 'Hybrid · Remote',
-      kpi3: 'Focus: integraties, webapps',
       aboutTitle: 'Over mij',
       aboutText:
         'IT boeit me enorm omdat je constant kan bijleren. Ik ben gepassioneerd door het inzetten van technologie om effectieve oplossingen te bouwen. Overdag focus ik me voornamelijk op integratieprojecten met Azure Logic Apps en Service Bus, en ontwikkel ik Azure Functions in .NET of andere talen naargelang de vereisten. Momenteel bouw ik ook een .NET-applicatie die gebruikmaakt van een op Azure gedeployeerd taalmodel.',
@@ -61,7 +60,6 @@ export default function Page() {
       location: 'Flanders, Belgium',
       kpi1: '8+ years experience',
       kpi2: 'Hybrid · Remote',
-      kpi3: 'Focus: integrations, web apps',
       aboutTitle: 'About',
       aboutText:
         'I\'m fascinated by the constant learning that IT requires. I\'m passionate about using technology to build effective solutions. During the day, I focus mainly on integration projects with Azure Logic Apps and Service Bus, and I develop Azure Functions in .NET or other languages based on the requirements. I am also currently building a .NET application that uses an Azure-deployed language model.',
@@ -100,7 +98,6 @@ export default function Page() {
             <div className="kpis">
               <span className="kpi">{t.kpi1}</span>
               <span className="kpi">{t.kpi2}</span>
-              <span className="kpi">{t.kpi3}</span>
             </div>
           </div>
           <div className="section">
