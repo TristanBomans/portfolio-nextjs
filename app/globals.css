@@ -168,10 +168,14 @@ a {
 }
 
 .right-col > .card {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     min-height: 0;
+}
+
+.right-col > .card:last-child {
+    flex: 1;
 }
 
 /* Cards */
@@ -190,12 +194,10 @@ a {
 }
 
 .section {
-    padding: 24px;
+    padding: 20px;
 }
 
-.card > .section {
-    flex: 1;
-}
+/* Sections take natural height by default */
 
 .section+.section {
     border-top: 1px solid var(--border);

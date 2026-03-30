@@ -168,7 +168,10 @@ export default function Page() {
                   <div className="timeline-dot"></div>
                   <div className="item-header">
                     <h4 className="item-title">Groepspraktijk Meiselaan</h4>
-                    <span className="item-meta" style={{ color: 'var(--accent)' }}>{t.live}</span>
+                    <span className="item-meta" style={{ color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
+                      {t.live}
+                    </span>
                   </div>
                   <p className="item-desc">
                     {lang === 'nl' ? 'Angular + .NET 9 + SQL · Moderne website met interactieve elementen' : 'Angular + .NET 9 + SQL · Modern website with some interactive elements'}
@@ -178,7 +181,10 @@ export default function Page() {
                   <div className="timeline-dot"></div>
                   <div className="item-header">
                     <h4 className="item-title">PhysioFocus</h4>
-                    <span className="item-meta" style={{ color: 'var(--accent)' }}>{t.live}</span>
+                    <span className="item-meta" style={{ color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
+                      {t.live}
+                    </span>
                   </div>
                   <p className="item-desc">
                     {lang === 'nl' ? 'Next.js · Cloudflare · Moderne website met interactieve elementen' : 'Next.js · Cloudflare · Modern website with some interactive elements'}
