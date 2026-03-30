@@ -156,8 +156,22 @@ a {
 @media (min-width: 900px) {
     .grid-2 {
         grid-template-columns: 1fr 1fr;
-        align-items: start;
+        align-items: stretch;
     }
+}
+
+.right-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 24px;
+}
+
+.right-col > .card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 /* Cards */
@@ -177,6 +191,10 @@ a {
 
 .section {
     padding: 24px;
+}
+
+.card > .section {
+    flex: 1;
 }
 
 .section+.section {
