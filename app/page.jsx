@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
 import { pageTranslations } from "./translations";
 
 const PDFDownloadButton = dynamic(
@@ -18,31 +19,13 @@ function monthsSince(start) {
   return Math.max(0, months);
 }
 
-function getInitialLang() {
-  if (typeof window !== "undefined") {
-    const params = new URLSearchParams(window.location.search);
-    return params.get("lang") === "nl" ? "nl" : "en";
-  }
-  return "en";
-}
-
-export default function Page() {
-  const [lang, setLang] = useState(getInitialLang);
+function PageInner() {
+  const searchParams = useSearchParams();
+  const lang = searchParams.get("lang") === "nl" ? "nl" : "en";
   const [monthsPuratos, setMonthsPuratos] = useState(null);
-  const [year, setYear] = useState(2025);
 
   useEffect(() => {
     setMonthsPuratos(monthsSince(new Date(2025, 2, 1)));
-    setYear(new Date().getFullYear());
-  }, []);
-
-  useEffect(() => {
-    const handlePopState = () => {
-      const params = new URLSearchParams(window.location.search);
-      setLang(params.get("lang") === "nl" ? "nl" : "en");
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
   const t = pageTranslations[lang];
@@ -328,8 +311,16 @@ export default function Page() {
       </section>
 
       <div className="footer" suppressHydrationWarning>
-        © {year} Tristan — {t.rights}
+        © {new Date().getFullYear()} Tristan — {t.rights}
       </div>
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <PageInner />
+    </Suspense>
   );
 }
