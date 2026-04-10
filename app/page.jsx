@@ -1,7 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { PDFDownloadButton } from "./components/ResumePDF";
+import { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
+import { pageTranslations } from "./translations";
+
+const PDFDownloadButton = dynamic(
+  () => import("./components/ResumePDF").then((m) => m.PDFDownloadButton),
+  { ssr: false }
+);
 
 function monthsSince(start) {
   const now = new Date();
@@ -12,104 +19,26 @@ function monthsSince(start) {
   return Math.max(0, months);
 }
 
-const translations = {
-  nl: {
-    title: "Tristan",
-    subtitle: "Software Engineer",
-    role: ".NET, Azure Integrations, Next.js",
-    location: "Vlaanderen, België",
-    kpi1: "8+ jaar ervaring",
-    kpi2: "Hybrid · Remote",
-    kpi3: "Freelance",
-    aboutTitle: "Over mij",
-    aboutText:
-      "IT fascineert me omdat er altijd iets nieuws te leren valt. Ik haal energie uit het bouwen van doordachte, effectieve oplossingen met technologie.\n\nIn mijn dagelijkse werk focus ik op integratieprojecten in Azure, waarbij ik onder andere werk met Logic Apps, Service Bus, Azure Functions en nog vele anderen.",
-    links: "Links",
-    availability: "Beschikbaarheid",
-    availabilityStatus: "Actief op project",
-    availabilityStatusDesc: "Puratos — Azure Integration Developer",
-    availabilitySideProjects: "Side projects",
-    availabilitySideDesc: "Open voor side projects",
-    stack: "React/Next · .NET 8/9 · Azure",
-    tech: "Tech",
-    experience: "Ervaring",
-    present: "Heden",
-    monthsSuffix: "mnd",
-    selectedWork: "Projecten",
-    live: "Live",
-    hybrid: "Hybride",
-    onsite: "On-site",
-    internal: "Intern",
-    freelance: "Freelance",
-    rights: "Alle rechten voorbehouden.",
-  },
-  en: {
-    title: "Tristan",
-    subtitle: "Software Engineer",
-    role: ".NET, Azure Integrations, Next.js",
-    location: "Flanders, Belgium",
-    kpi1: "8+ years experience",
-    kpi2: "Hybrid · Remote",
-    kpi3: "Freelance",
-    aboutTitle: "About",
-    aboutText:
-      "I'm drawn to IT because there's always something new to learn. I enjoy building practical, effective solutions using technology.\n\nIn my day-to-day work, I focus on integration projects in Azure, working with services like Logic Apps, Service Bus, Azure Functions, and many others.",
-    links: "Links",
-    availability: "Availability",
-    availabilityStatus: "On a project",
-    availabilityStatusDesc: "Puratos — Azure Integration Developer",
-    availabilitySideProjects: "Side projects",
-    availabilitySideDesc: "Open for side projects",
-    tech: "Tech",
-    experience: "Experience",
-    present: "present",
-    monthsSuffix: "mo",
-    selectedWork: "Projects",
-    live: "Live",
-    hybrid: "Hybrid",
-    onsite: "On-site",
-    internal: "Internal",
-    freelance: "Freelance",
-    rights: "All rights reserved.",
-  },
-};
-
-export default function Page() {
-  const [lang, setLang] = useState("en");
-  const [mounted, setMounted] = useState(false);
+function PageInner() {
+  const searchParams = useSearchParams();
+  const lang = searchParams.get("lang") === "nl" ? "nl" : "en";
+  const [monthsPuratos, setMonthsPuratos] = useState(null);
 
   useEffect(() => {
-    setMounted(true);
-    const p = new URLSearchParams(window.location.search);
-    if (p.get("lang") === "nl") setLang("nl");
+    setMonthsPuratos(monthsSince(new Date(2025, 2, 1)));
   }, []);
 
-  const toggleLang = (newLang) => {
-    setLang(newLang);
-    const url = new URL(window.location);
-    url.searchParams.set("lang", newLang);
-    window.history.pushState({}, "", url);
-  };
-
-  const t = translations[lang];
-
-  const monthsPuratos = monthsSince(new Date(2025, 2, 1)); // March 1, 2025
-
-  if (!mounted) return null; // Prevent hydration mismatch
+  const t = pageTranslations[lang];
 
   return (
-    <main className="container">
-      {/* Language Switcher */}
-
+    <main className="container" suppressHydrationWarning>
       <div className="grid grid-2 animate-in">
         <section className="card">
           <div className="section">
             <h1 className="h1">
               {t.title} <span className="h1-accent">— {t.subtitle}</span>
             </h1>
-            <p className="h2" style={{ fontSize: "14px", marginTop: "4px" }}>
-              {t.location}
-            </p>
+            <p className="h2 location-subtitle">{t.location}</p>
             <div className="kpis">
               <span className="kpi">{t.kpi1}</span>
               <span className="kpi">{t.kpi2}</span>
@@ -118,19 +47,11 @@ export default function Page() {
           </div>
           <div className="section">
             <div className="section-title">{t.aboutTitle}</div>
-            {t.aboutText.split("\n\n").map((paragraph, i) => (
-              <p
-                key={i}
-                style={{
-                  margin: i === 0 ? 0 : "12px 0 0 0",
-                  color: "var(--muted)",
-                  lineHeight: "1.6",
-                  fontSize: "14.25px",
-                }}
-              >
-                {paragraph}
-              </p>
-            ))}
+            <div className="about-text">
+              {t.aboutText.split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
           </div>
           <div className="section">
             <div className="section-title">{t.links}</div>
@@ -188,10 +109,9 @@ export default function Page() {
           </div>
         </section>
 
-        <div className="grid right-col" style={{ gap: "24px" }}>
+        <div className="grid right-col">
           <section className="card">
             <div className="section availability-split">
-              {/* Main Assignment */}
               <div className="availability-block main">
                 <div className="availability-indicator red" />
                 <div className="availability-content">
@@ -206,7 +126,6 @@ export default function Page() {
 
               <div className="availability-divider" />
 
-              {/* Side Projects */}
               <div className="availability-block side">
                 <div className="availability-indicator green" />
                 <div className="availability-content">
@@ -223,7 +142,7 @@ export default function Page() {
               <div className="section-title">{t.tech}</div>
               <div className="taglist">
                 <span className="tag">C#</span>
-                <span className="tag">Azure</span>{" "}
+                <span className="tag">Azure</span>
                 <span className="tag">React</span>
                 <span className="tag">Angular</span>
               </div>
@@ -235,66 +154,32 @@ export default function Page() {
               <div className="section-title">{t.selectedWork}</div>
               <div className="timeline">
                 <a
-                  className="timeline-item"
+                  className="timeline-item timeline-link"
                   href="https://groepspraktijkmeiselaan.be/"
                   target="_blank"
                   rel="noreferrer"
-                  style={{ display: "block", textDecoration: "none" }}
                 >
-                  <div className="timeline-dot"></div>
+                  <div className="timeline-dot" />
                   <div className="item-header">
                     <h4 className="item-title">Groepspraktijk Meiselaan</h4>
-                    <span
-                      className="item-meta"
-                      style={{
-                        color: "var(--accent)",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: "8px",
-                          height: "8px",
-                          borderRadius: "50%",
-                          background: "#22c55e",
-                          display: "inline-block",
-                        }}
-                      ></span>
+                    <span className="item-meta live-badge">
+                      <span className="live-dot" />
                       {t.live}
                     </span>
                   </div>
                   <p className="item-desc">Angular · .NET 9 · SQL</p>
                 </a>
                 <a
-                  className="timeline-item"
+                  className="timeline-item timeline-link"
                   href="https://physiofocus.be/"
                   target="_blank"
                   rel="noreferrer"
-                  style={{ display: "block", textDecoration: "none" }}
                 >
-                  <div className="timeline-dot"></div>
+                  <div className="timeline-dot" />
                   <div className="item-header">
                     <h4 className="item-title">PhysioFocus</h4>
-                    <span
-                      className="item-meta"
-                      style={{
-                        color: "var(--accent)",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "6px",
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: "8px",
-                          height: "8px",
-                          borderRadius: "50%",
-                          background: "#22c55e",
-                          display: "inline-block",
-                        }}
-                      ></span>
+                    <span className="item-meta live-badge">
+                      <span className="live-dot" />
                       {t.live}
                     </span>
                   </div>
@@ -306,24 +191,24 @@ export default function Page() {
         </div>
       </div>
 
-      <section
-        className="card animate-in"
-        style={{ marginTop: 24, animationDelay: "0.1s" }}
-      >
+      <section className="card animate-in experience-section">
         <div className="section">
           <div className="section-title">{t.experience}</div>
           <div className="timeline">
             <div className="timeline-item">
-              <div
-                className="timeline-dot"
-                style={{ background: "var(--accent)" }}
-              ></div>
+              <div className="timeline-dot accent-dot" />
               <div className="item-header">
                 <h4 className="item-title">
                   Puratos — Azure Integration Developer
                 </h4>
                 <span className="item-meta">
                   {lang === "nl" ? "Mrt 2025" : "Mar 2025"} — {t.present}
+                  {monthsPuratos != null && (
+                    <>
+                      {" "}
+                      · {monthsPuratos} {t.monthsSuffix}
+                    </>
+                  )}
                 </span>
               </div>
               <p className="item-desc">
@@ -332,7 +217,7 @@ export default function Page() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot"></div>
+              <div className="timeline-dot" />
               <div className="item-header">
                 <h4 className="item-title">Fluvius — .NET Developer</h4>
                 <span className="item-meta">
@@ -347,7 +232,7 @@ export default function Page() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot"></div>
+              <div className="timeline-dot" />
               <div className="item-header">
                 <h4 className="item-title">Ferm vzw — .NET Developer</h4>
                 <span className="item-meta">
@@ -362,7 +247,7 @@ export default function Page() {
             </div>
 
             <div className="timeline-item">
-              <div className="timeline-dot"></div>
+              <div className="timeline-dot" />
               <div className="item-header">
                 <h4 className="item-title">
                   Delen Private Bank — .NET Developer
@@ -379,7 +264,7 @@ export default function Page() {
             </div>
 
             <div className="timeline-item timeline-item-with-children">
-              <div className="timeline-dot"></div>
+              <div className="timeline-dot" />
               <div className="item-header">
                 <h4 className="item-title">Cegeka</h4>
               </div>
@@ -425,9 +310,17 @@ export default function Page() {
         </div>
       </section>
 
-      <div className="footer">
+      <div className="footer" suppressHydrationWarning>
         © {new Date().getFullYear()} Tristan — {t.rights}
       </div>
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <PageInner />
+    </Suspense>
   );
 }
