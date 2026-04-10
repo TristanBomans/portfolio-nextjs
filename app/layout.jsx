@@ -1,5 +1,5 @@
 import "./globals.css";
-import LanguageSwitcher from "./LanguageSwitcher";
+import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
 export const metadata = {
   title: "Portfolio — Freelance .NET & Next.js",
@@ -23,13 +23,9 @@ export default function RootLayout({ children }) {
               <span className="brand-name">Portfolio</span>
               <span className="badge">Freelance</span>
             </div>
-            <nav className="nav-links">
-              <a className="nav-link" href="?lang=nl" aria-label="Switch to Dutch">NL</a>
-              <a className="nav-link" href="?lang=en" aria-label="Switch to English">EN</a>
-            </nav>
+            <LanguageSwitcher />
           </div>
         </header>
-        <LanguageSwitcher />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
