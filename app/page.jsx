@@ -299,7 +299,7 @@ function PageInner() {
                   <div className="child-info">
                     <span className="child-company">AT&T</span>
                     <p className="child-desc">
-                      {t.internal} · Analyst Developer · Vilvoorde · {t.onsite}
+                      {t.internship} · Analyst Developer · Vilvoorde · {t.onsite}
                     </p>
                   </div>
                   <span className="child-meta">Feb 2018 — May 2018</span>
