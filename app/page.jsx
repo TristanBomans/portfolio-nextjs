@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore, Suspense } from "react";
+import { useEffect, useRef, useSyncExternalStore, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { pageTranslations } from "./translations";
@@ -54,14 +54,25 @@ function PageInner() {
     () => null
   );
 
+  const mainRef = useRef(null);
+  const prevLang = useRef(lang);
+
   useEffect(() => {
     document.documentElement.lang = lang;
+    if (prevLang.current === lang) return;
+    prevLang.current = lang;
+    // Restart the text "sharpen" animation (see .lang-swap in globals.css).
+    const main = mainRef.current;
+    if (!main) return;
+    main.classList.remove("lang-swap");
+    void main.offsetWidth;
+    main.classList.add("lang-swap");
   }, [lang]);
 
   const t = pageTranslations[lang];
 
   return (
-    <main className="container" suppressHydrationWarning>
+    <main ref={mainRef} className="container" suppressHydrationWarning>
       <div className="grid grid-2 animate-in">
         <section className="card">
           <div className="section">
@@ -237,7 +248,14 @@ function PageInner() {
                 <h4 className="item-title">
                   Puratos · Azure Integration Developer
                 </h4>
-                <span className="item-meta">
+                {/* The duration is only known in the browser. Keep the whole
+                    meta line invisible until then and fade it in at its final
+                    width, so the right-aligned dates never shift. */}
+                <span
+                  className={
+                    monthsPuratos == null ? "item-meta pending" : "item-meta"
+                  }
+                >
                   {lang === "nl" ? "Mrt 2025" : "Mar 2025"} – {t.present}
                   {monthsPuratos != null && (
                     <>

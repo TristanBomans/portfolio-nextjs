@@ -19,13 +19,11 @@ function LanguageSwitcherInner() {
     if (lang === 'en') params.delete('lang');
     else params.set('lang', lang);
     const query = params.toString();
+    const url = `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`;
+
     // Native history update: Next syncs useSearchParams with it, so the
     // page re-renders in place — no navigation, no RSC fetch, no scroll jump.
-    window.history.replaceState(
-      null,
-      '',
-      `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`
-    );
+    window.history.replaceState(null, '', url);
   };
 
   return (

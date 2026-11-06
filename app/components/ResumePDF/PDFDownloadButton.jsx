@@ -14,8 +14,11 @@ export function PDFDownloadButton({ lang }) {
       fileName={filename}
       title={label}
       className="link"
+      aria-label="Download CV (PDF)"
     >
       {({ loading }) => (
+        // Keep the label and icon fixed while the PDF is (re)generated so
+        // the row of link buttons never changes width.
         <>
           <svg
             width="14"
@@ -26,27 +29,13 @@ export function PDFDownloadButton({ lang }) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+            style={{ opacity: loading ? 0.4 : 1, transition: "opacity 0.2s" }}
           >
-            {loading ? (
-              <circle cx="12" cy="12" r="10" opacity="0.3">
-                <animateTransform
-                  attributeName="transform"
-                  type="rotate"
-                  from="0 12 12"
-                  to="360 12 12"
-                  dur="1s"
-                  repeatCount="indefinite"
-                />
-              </circle>
-            ) : (
-              <>
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line x1="12" y1="15" x2="12" y2="3" />
-              </>
-            )}
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
           </svg>
-          {loading ? (isNL ? "Laden..." : "Loading...") : label}
+          {label}
         </>
       )}
     </PDFDownloadLink>
