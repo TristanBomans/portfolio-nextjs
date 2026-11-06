@@ -1120,14 +1120,14 @@ body {
     background: currentColor;
 }
 
-/* Language switch: only the text sharpens in ("glassy"), the cards and
-   frames stay put. PageInner restarts this by toggling .lang-swap on <main>. */
+/* Language switch: the text and link buttons sharpen in ("glassy"), the
+   cards and frames stay put. PageInner restarts this by toggling .lang-swap on <main>. */
 .lang-swap :is(
     .h1, .h2, .section-title, .about-text p, .kpi, .tag,
     .item-title, .item-desc, .item-meta, .live-badge,
     .child-company, .child-desc, .child-meta,
     .availability-label, .availability-detail, .status-chip,
-    .footer
+    .link, .footer
 ) {
     animation: text-sharpen 650ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }
@@ -1151,5 +1151,35 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .lang-swap * {
         animation: none !important;
+    }
+}
+
+/* Small screens: keep the four link buttons on one line by shrinking
+   them; they grow to fill the row. Icons drop on the narrowest phones. */
+@media (max-width: 599px) {
+    .links {
+        flex-wrap: nowrap;
+        gap: 6px;
+    }
+
+    .link {
+        flex: 1 1 auto;
+        min-width: 0;
+        justify-content: center;
+        height: 30px;
+        padding: 0 6px;
+        gap: 4px;
+        font-size: var(--fs-2xs);
+    }
+
+    .link svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+@media (max-width: 359px) {
+    .link svg {
+        display: none;
     }
 }
