@@ -54,7 +54,7 @@ export default function ResumePDF({ lang }) {
             <View key={index} style={styles.experienceItem}>
               <View style={styles.experienceHeader}>
                 <Text style={styles.experienceTitle}>
-                  {job.title} — {job.role}
+                  {job.title} · {job.role}
                 </Text>
                 <Text style={styles.experienceDate}>{job.date}</Text>
               </View>
@@ -109,7 +109,7 @@ export default function ResumePDF({ lang }) {
         {/* Footer */}
         <View style={styles.footer}>
           <Text>
-            © {new Date().getFullYear()} Tristan Bomans — {isNL ? "Alle rechten voorbehouden" : "All rights reserved"}
+            © {new Date().getFullYear()} Tristan Bomans · {isNL ? "Alle rechten voorbehouden" : "All rights reserved"}
           </Text>
         </View>
       </Page>

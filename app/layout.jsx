@@ -1,34 +1,34 @@
 import "./globals.css";
+import { DM_Sans } from "next/font/google";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
 import { LanguageSwitcher } from "./components/LanguageSwitcher";
 
 export const metadata = {
-  title: "Portfolio — Freelance .NET & Next.js",
-  description: "The portfolio of Tristan Bomans, a freelance .NET & Next.js developer.",
+  title: "Tristan Bomans · Freelance Azure Integration & .NET Developer",
+  description:
+    "Portfolio of Tristan Bomans, a freelance software engineer specialised in Azure integration (Logic Apps, Service Bus, Functions) and .NET.",
   icons: { icon: "/icon.svg" }
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={dmSans.variable} suppressHydrationWarning>
       <body>
         <header className="topbar">
           <div className="container topbar-inner">
             <div className="brand">
-              <div className="logo-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-                  <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </div>
-              <span className="brand-name">Portfolio</span>
+              <span className="monogram" aria-hidden="true">TB</span>
+              <span className="brand-name">Tristan Bomans</span>
               <span className="badge">Freelance</span>
             </div>
             <LanguageSwitcher />
           </div>
         </header>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
         {children}
       </body>
     </html>

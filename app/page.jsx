@@ -1,13 +1,34 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useEffect, useSyncExternalStore, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { pageTranslations } from "./translations";
 
 const PDFDownloadButton = dynamic(
   () => import("./components/ResumePDF").then((m) => m.PDFDownloadButton),
-  { ssr: false }
+  {
+    ssr: false,
+    loading: () => (
+      <span className="link" aria-hidden="true">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        CV
+      </span>
+    ),
+  }
 );
 
 function monthsSince(start) {
@@ -19,14 +40,23 @@ function monthsSince(start) {
   return Math.max(0, months);
 }
 
+const PURATOS_START = new Date(2025, 2, 1);
+const subscribeNoop = () => () => {};
+
 function PageInner() {
   const searchParams = useSearchParams();
   const lang = searchParams.get("lang") === "nl" ? "nl" : "en";
-  const [monthsPuratos, setMonthsPuratos] = useState(null);
+  // Computed only in the browser: the page is statically exported, so a
+  // build-time value would go stale.
+  const monthsPuratos = useSyncExternalStore(
+    subscribeNoop,
+    () => monthsSince(PURATOS_START),
+    () => null
+  );
 
   useEffect(() => {
-    setMonthsPuratos(monthsSince(new Date(2025, 2, 1)));
-  }, []);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const t = pageTranslations[lang];
 
@@ -36,7 +66,7 @@ function PageInner() {
         <section className="card">
           <div className="section">
             <h1 className="h1">
-              {t.title} <span className="h1-accent">— {t.subtitle}</span>
+              {t.title} <span className="h1-accent">· {t.subtitle}</span>
             </h1>
             <p className="h2 location-subtitle">{t.location}</p>
             <div className="kpis">
@@ -111,30 +141,36 @@ function PageInner() {
 
         <div className="grid right-col">
           <section className="card">
-            <div className="section availability-split">
-              <div className="availability-block main">
-                <div className="availability-indicator red" />
-                <div className="availability-content">
-                  <div className="availability-label">
-                    {t.availabilityStatus}
+            <div className="section">
+              <div className="section-title">{t.availability}</div>
+              <div className="status-list">
+                <div className="status-row">
+                  <div className="status-text">
+                    <div className="availability-label">
+                      {t.availabilityStatus}
+                    </div>
+                    <div className="availability-detail">
+                      {t.availabilityStatusDesc}
+                    </div>
                   </div>
-                  <div className="availability-detail">
-                    {t.availabilityStatusDesc}
-                  </div>
+                  <span className="status-chip" data-tone="warn">
+                    <span className="status-dot" />
+                    {t.statusBusy}
+                  </span>
                 </div>
-              </div>
-
-              <div className="availability-divider" />
-
-              <div className="availability-block side">
-                <div className="availability-indicator green" />
-                <div className="availability-content">
-                  <div className="availability-label">
-                    {t.availabilitySideProjects}
+                <div className="status-row">
+                  <div className="status-text">
+                    <div className="availability-label">
+                      {t.availabilitySideProjects}
+                    </div>
+                    <div className="availability-detail">
+                      {t.availabilitySideDesc}
+                    </div>
                   </div>
-                  <div className="availability-detail">
-                    {t.availabilitySideDesc}
-                  </div>
+                  <span className="status-chip" data-tone="ok">
+                    <span className="status-dot" />
+                    {t.statusOpen}
+                  </span>
                 </div>
               </div>
             </div>
@@ -171,7 +207,7 @@ function PageInner() {
                 </a>
                 <a
                   className="timeline-item timeline-link"
-                  href="https://physiofocus.be/"
+                  href="https://www.physiofocus.be/"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -199,10 +235,10 @@ function PageInner() {
               <div className="timeline-dot accent-dot" />
               <div className="item-header">
                 <h4 className="item-title">
-                  Puratos — Azure Integration Developer
+                  Puratos · Azure Integration Developer
                 </h4>
                 <span className="item-meta">
-                  {lang === "nl" ? "Mrt 2025" : "Mar 2025"} — {t.present}
+                  {lang === "nl" ? "Mrt 2025" : "Mar 2025"} – {t.present}
                   {monthsPuratos != null && (
                     <>
                       {" "}
@@ -219,11 +255,11 @@ function PageInner() {
             <div className="timeline-item">
               <div className="timeline-dot" />
               <div className="item-header">
-                <h4 className="item-title">Fluvius — .NET Developer</h4>
+                <h4 className="item-title">Fluvius · .NET Developer</h4>
                 <span className="item-meta">
                   {lang === "nl"
-                    ? "Jan 2024 — Mrt 2025"
-                    : "Jan 2024 — Mar 2025"}
+                    ? "Jan 2024 – Mrt 2025"
+                    : "Jan 2024 – Mar 2025"}
                 </span>
               </div>
               <p className="item-desc">
@@ -234,11 +270,11 @@ function PageInner() {
             <div className="timeline-item">
               <div className="timeline-dot" />
               <div className="item-header">
-                <h4 className="item-title">Ferm vzw — .NET Developer</h4>
+                <h4 className="item-title">Ferm vzw · .NET Developer</h4>
                 <span className="item-meta">
                   {lang === "nl"
-                    ? "Jan 2022 — Dec 2023"
-                    : "Jan 2022 — Dec 2023"}
+                    ? "Jan 2022 – Dec 2023"
+                    : "Jan 2022 – Dec 2023"}
                 </span>
               </div>
               <p className="item-desc">
@@ -250,12 +286,12 @@ function PageInner() {
               <div className="timeline-dot" />
               <div className="item-header">
                 <h4 className="item-title">
-                  Delen Private Bank — .NET Developer
+                  Delen Private Bank · .NET Developer
                 </h4>
                 <span className="item-meta">
                   {lang === "nl"
-                    ? "Aug 2020 — Jan 2022"
-                    : "Aug 2020 — Jan 2022"}
+                    ? "Aug 2020 – Jan 2022"
+                    : "Aug 2020 – Jan 2022"}
                 </span>
               </div>
               <p className="item-desc">
@@ -282,7 +318,7 @@ function PageInner() {
                       Analyst Developer · Zaventem · {t.onsite}
                     </p>
                   </div>
-                  <span className="child-meta">Feb 2020 — Aug 2020</span>
+                  <span className="child-meta">Feb 2020 – Aug 2020</span>
                 </div>
 
                 <div className="timeline-child">
@@ -292,7 +328,7 @@ function PageInner() {
                       Analyst Developer · Vilvoorde · {t.onsite}
                     </p>
                   </div>
-                  <span className="child-meta">Aug 2018 — Feb 2020</span>
+                  <span className="child-meta">Aug 2018 – Feb 2020</span>
                 </div>
 
                 <div className="timeline-child">
@@ -302,7 +338,7 @@ function PageInner() {
                       {t.internship} · Analyst Developer · Vilvoorde · {t.onsite}
                     </p>
                   </div>
-                  <span className="child-meta">Feb 2018 — May 2018</span>
+                  <span className="child-meta">Feb 2018 – May 2018</span>
                 </div>
               </div>
             </div>
@@ -311,7 +347,7 @@ function PageInner() {
       </section>
 
       <div className="footer" suppressHydrationWarning>
-        © {new Date().getFullYear()} Tristan — {t.rights}
+        © {new Date().getFullYear()} Tristan · {t.rights}
       </div>
     </main>
   );
