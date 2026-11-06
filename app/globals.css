@@ -1127,8 +1127,9 @@ body {
     .item-title, .item-desc, .item-meta, .live-badge,
     .child-company, .child-desc, .child-meta,
     .availability-label, .availability-detail, .status-chip,
-    .link, .footer
-) {
+    .link, .footer, .timeline-dot
+),
+.lang-swap .timeline::before {
     animation: text-sharpen 650ms cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }
 
